@@ -11,7 +11,7 @@
 - Inference labels: exact, asymptotic, or simulated where applicable.
 - Provenance: PyPI Trusted Publishing from `barangaroo/crosstabs-lite/.github/workflows/release-python-mcp.yml`.
 
-The bundled headless server and browser workspace call the same TypeScript project service. The focused Python statistical server remains a separate numerical implementation covered by overlapping regression fixtures and public reference cases.
+The bundled headless server and browser workspace share the same TypeScript `TabBookProject` model and project-domain modules. The focused Python statistical server remains a separate numerical implementation covered by overlapping regression fixtures and public reference cases.
 
 ## Project workflows exposed by plugin v0.2
 

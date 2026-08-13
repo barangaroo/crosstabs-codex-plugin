@@ -2,7 +2,7 @@
 
 Complete auditable survey projects from Codex. The plugin installs `crosstabs==1.1.0` on demand with `uvx` and exposes two local MCP servers: 23 end-to-end project operations plus 39 focused statistical tools and versioned evidence resources.
 
-This is the official public Codex marketplace for Crosstabs. Version 0.2.0 has implementation parity with the browser workspace for the published local project operations because both call the same project service. Browser interaction state, shared cloud review, comments, and optional connector authorization remain separate surfaces.
+This is the official public Codex marketplace for Crosstabs. Version 0.2.0 has implementation parity for the published local project operations because the headless adapter and browser workspace share the same `TabBookProject` model and project-domain modules. Browser interaction state, shared cloud review, comments, and optional connector authorization remain separate surfaces.
 
 ## Install
 
