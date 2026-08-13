@@ -1,8 +1,8 @@
 # Crosstabs for Codex
 
-Complete auditable survey projects from Codex. The plugin installs `crosstabs==1.1.0` on demand with `uvx` and exposes two local MCP servers: 23 end-to-end project operations plus 39 focused statistical tools and versioned evidence resources.
+Complete auditable survey projects from Codex. The plugin installs `crosstabs==1.1.1` on demand with `uvx` and exposes two local MCP servers: 23 end-to-end project operations plus 39 focused statistical tools and versioned evidence resources.
 
-This is the official public Codex marketplace for Crosstabs. Version 0.2.0 has implementation parity for the published local project operations because the headless adapter and browser workspace share the same `TabBookProject` model and project-domain modules. Browser interaction state, shared cloud review, comments, and optional connector authorization remain separate surfaces.
+This is the official public Codex marketplace for Crosstabs. Version 0.2.1 has implementation parity for the published local project operations because the headless adapter and browser workspace share the same `TabBookProject` model and project-domain modules. Browser interaction state, shared cloud review, comments, and optional connector authorization remain separate surfaces.
 
 ## Install
 
@@ -19,9 +19,9 @@ The plugin requires `uv`/`uvx`, Python 3.10 or newer, and Node.js 20 or newer fo
 
 ## Verified release surface
 
-- Codex plugin: `0.2.0`.
-- Python/MCP package: immutable `crosstabs==1.1.0`.
-- Official MCP Registry: `io.github.barangaroo/crosstabs` 1.1.0, active/latest.
+- Codex plugin: `0.2.1`.
+- Python/MCP package: immutable `crosstabs==1.1.1`.
+- Official MCP Registry: `io.github.barangaroo/crosstabs` 1.1.1, active/latest.
 - MCP handshakes: exactly 23 headless workflow tools; 39 statistical tools and two evidence resources over local stdio.
 - Machine-readable boundary: [`plugins/crosstabs/parity.json`](plugins/crosstabs/parity.json).
 
@@ -31,5 +31,5 @@ Every push and pull request checks the manifests, exact package requirement, par
 - MCP documentation: https://www.crosstabs.com/mcp
 - Agent product: https://ai.crosstabs.com/
 - Remote aggregate MCP: https://mcp.crosstabs.com/mcp
-- PyPI: https://pypi.org/project/crosstabs/1.1.0/
+- PyPI: https://pypi.org/project/crosstabs/1.1.1/
 - Privacy: https://www.crosstabs.com/privacy

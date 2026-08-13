@@ -2,7 +2,7 @@
 
 ## Current verified surface
 
-- PyPI package: `crosstabs==1.1.0`, Python 3.10+, Node.js 20+ for the bundled headless server.
+- PyPI package: `crosstabs==1.1.1`, Python 3.10+, Node.js 20+ for the bundled headless server.
 - Transport: local MCP over stdio through `uvx`.
 - Numerical tools: 39 registered tools.
 - Project tools: exactly 23 registered operations, from `create_project` through `get_audit_history`.
