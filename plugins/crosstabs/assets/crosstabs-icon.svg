@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Crosstabs">
+  <rect width="64" height="64" rx="14" fill="#1148F5"/>
+  <path d="M16 17h32v30H16z" fill="none" stroke="#fff" stroke-width="4"/>
+  <path d="M16 28h32M16 38h32M29 17v30" stroke="#fff" stroke-width="4"/>
+  <rect x="31" y="30" width="15" height="6" rx="2" fill="#8CF0D1"/>
+</svg>

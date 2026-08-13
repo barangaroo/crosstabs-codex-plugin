@@ -1,0 +1,46 @@
+{
+  "name": "crosstabs",
+  "version": "0.1.0",
+  "description": "Build auditable survey crosstabs and run 39 statistical tools locally from Codex.",
+  "author": {
+    "name": "Crosstabs Team",
+    "email": "support@crosstabs.com",
+    "url": "https://www.crosstabs.com/about"
+  },
+  "homepage": "https://www.crosstabs.com/mcp",
+  "repository": "https://github.com/barangaroo/crosstabs-codex-plugin",
+  "license": "MIT",
+  "keywords": [
+    "crosstabs",
+    "survey-research",
+    "statistics",
+    "contingency-tables",
+    "chi-square",
+    "mcp"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Crosstabs",
+    "shortDescription": "Auditable survey crosstabs and statistical tests",
+    "longDescription": "Analyze categorical and survey data in Codex with a local Crosstabs MCP server. The plugin provides 39 numerical tools, two evidence resources, and a research workflow that keeps assumptions, bases, effect sizes, limitations, and provenance visible. It does not claim full parity with the browser workspace; unsupported project, weighting, reporting, coding, and wave-management workflows are identified explicitly.",
+    "developerName": "Crosstabs Team",
+    "category": "Data & Analytics",
+    "capabilities": [
+      "Interactive",
+      "Read"
+    ],
+    "websiteURL": "https://www.crosstabs.com/",
+    "privacyPolicyURL": "https://www.crosstabs.com/privacy",
+    "termsOfServiceURL": "https://www.crosstabs.com/terms",
+    "defaultPrompt": [
+      "Analyze this survey file and build evidence-linked crosstabs.",
+      "Choose the right test for this contingency table and explain assumptions.",
+      "Audit these crosstabs for sparse cells, effect size, and multiple testing."
+    ],
+    "brandColor": "#1148F5",
+    "composerIcon": "./assets/crosstabs-icon.svg",
+    "logo": "./assets/crosstabs-logo.svg",
+    "screenshots": []
+  }
+}

@@ -1,0 +1,12 @@
+interface:
+  display_name: "Analyze survey crosstabs"
+  short_description: "Build rigorous, evidence-linked crosstabs"
+  default_prompt: "Use $analyze-survey-crosstabs to analyze this survey dataset with auditable crosstabs."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "crosstabs"
+      description: "Local Crosstabs statistical MCP server"
+      transport: "stdio"
+policy:
+  allow_implicit_invocation: true

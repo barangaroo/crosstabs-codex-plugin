@@ -1,0 +1,74 @@
+{
+  "$schema": "./parity.schema.json",
+  "schemaVersion": 1,
+  "pluginVersion": "0.1.0",
+  "verifiedAt": "2026-08-13T01:10:21Z",
+  "distribution": {
+    "package": "crosstabs",
+    "version": "1.0.4",
+    "requirement": "crosstabs==1.0.4",
+    "transport": "stdio",
+    "toolCount": 39,
+    "resourceUris": [
+      "crosstabs://evidence/graph",
+      "crosstabs://evidence/limitations"
+    ],
+    "registryRecord": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.barangaroo%2Fcrosstabs/versions/1.0.4"
+  },
+  "surfaces": [
+    {
+      "id": "statistical-tools",
+      "label": "Contingency-table tests, measures, diagnostics, and chart data",
+      "status": "verified",
+      "boundary": "Thirty-nine registered numerical tools are available through the local MCP server."
+    },
+    {
+      "id": "evidence-resources",
+      "label": "Versioned methods, limitations, and public evidence links",
+      "status": "verified",
+      "boundary": "Two MCP resources are available and are required by the plugin workflow for material interpretations."
+    },
+    {
+      "id": "raw-data-input",
+      "label": "Raw record and CSV aggregation helpers",
+      "status": "bounded",
+      "boundary": "Helpers support simple two-variable crosstabs within published tool payload and workload limits; large files should be aggregated locally first."
+    },
+    {
+      "id": "research-workflow",
+      "label": "Assumption-aware, evidence-linked survey analysis guidance",
+      "status": "verified",
+      "boundary": "The Codex skill requires bases, assumptions, effect sizes, multiplicity status, limitations, and non-causal wording."
+    },
+    {
+      "id": "project-model",
+      "label": "Saved filters, row sets, weights, multibanners, ordering, and export recipes",
+      "status": "app-only",
+      "boundary": "Use the Crosstabs.com workspace; plugin v0.1 exposes no persistent tab-book project API."
+    },
+    {
+      "id": "advanced-tabulation",
+      "label": "Significance letters, multiple-response sets, open-end coding, and theme approval",
+      "status": "app-only",
+      "boundary": "These workflows are not exposed by the plugin v0.1 MCP server."
+    },
+    {
+      "id": "report-refresh",
+      "label": "Editable PPTX/DOCX generation, refresh, and manual-edit preservation",
+      "status": "app-only",
+      "boundary": "These workflows are not exposed by the plugin v0.1 MCP server."
+    },
+    {
+      "id": "tracker-and-collaboration",
+      "label": "Replace/refresh, schema repair, waves, connectors, sharing, and cloud review",
+      "status": "app-only",
+      "boundary": "These workflows remain in the browser application and are not claimed as Codex plugin capabilities."
+    },
+    {
+      "id": "gateway-ai",
+      "label": "Vercel AI Gateway analysis and application activation telemetry",
+      "status": "app-only",
+      "boundary": "The plugin runs the statistical server locally and does not invoke the application's cloud AI or analytics pipeline."
+    }
+  ]
+}

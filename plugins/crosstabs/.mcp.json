@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "crosstabs": {
+      "command": "uvx",
+      "args": [
+        "--from",
+        "crosstabs==1.0.4",
+        "crosstabs"
+      ]
+    }
+  }
+}

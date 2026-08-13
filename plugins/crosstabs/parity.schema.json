@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://www.crosstabs.com/schemas/codex-plugin-parity.schema.json",
+  "title": "Crosstabs Codex plugin parity contract",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "pluginVersion",
+    "verifiedAt",
+    "distribution",
+    "surfaces"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "pluginVersion": { "type": "string" },
+    "verifiedAt": { "type": "string", "format": "date-time" },
+    "distribution": {
+      "type": "object",
+      "required": [
+        "package",
+        "version",
+        "requirement",
+        "transport",
+        "toolCount",
+        "resourceUris",
+        "registryRecord"
+      ],
+      "properties": {
+        "package": { "const": "crosstabs" },
+        "version": { "type": "string" },
+        "requirement": { "type": "string" },
+        "transport": { "const": "stdio" },
+        "toolCount": { "type": "integer", "minimum": 1 },
+        "resourceUris": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "registryRecord": { "type": "string", "format": "uri" }
+      },
+      "additionalProperties": false
+    },
+    "surfaces": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "label", "status", "boundary"],
+        "properties": {
+          "id": { "type": "string" },
+          "label": { "type": "string" },
+          "status": {
+            "enum": ["verified", "bounded", "app-only"]
+          },
+          "boundary": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
