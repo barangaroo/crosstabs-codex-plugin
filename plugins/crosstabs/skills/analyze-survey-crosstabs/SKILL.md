@@ -5,22 +5,24 @@ description: Build, test, audit, and explain crosstabs for categorical or survey
 
 # Analyze Survey Crosstabs
 
-Use the local MCP server for numerical claims. Keep every conclusion tied to its table, base, method, assumptions, and limitations.
+Use `crosstabs-headless` for end-to-end research projects and `crosstabs-statistics` for focused numerical claims. Keep every conclusion tied to its project revision, table, base, method, assumptions, evidence, and limitations.
 
 ## Workflow
 
-1. Inspect the supplied data before choosing tests. Do not replace it with sample data.
+1. Inspect the supplied data before choosing tests. Do not replace it with sample data. For a durable job, call `create_project`, `import_dataset`, then `profile_dataset`.
 2. State the unit of analysis, missing-value policy, row and column variables, category order, weight meaning, and whether any question is multiple-response.
-3. Aggregate raw records locally. Use `crosstab_from_data` or `crosstab_from_csv` only when the bounded input fits the tool; otherwise compute the matrix locally and pass only the aggregate table to the numerical tools.
-4. Run `check_assumptions` and `recommend_test` before inferential interpretation.
-5. Run the selected test and an appropriate effect size. Use Fisher only for eligible unweighted 2×2 integer-frequency tables. Use Monte Carlo or a defensible category/design alternative when asymptotic assumptions fail.
-6. Use residual or post-hoc tools only with an explicit multiplicity policy. Distinguish exploratory cell flags from confirmatory inference.
-7. Read `crosstabs://evidence/limitations` for every material interpretation and `crosstabs://evidence/graph` when the answer needs public supporting URLs.
-8. Report the table, bases, statistic, degrees of freedom where applicable, p-value, effect size, assumptions, warnings, and evidence links. Label exact, asymptotic, and simulated results correctly.
+3. Define reusable row sets, multibanners, filters, and weights inside the project. Inspect the current revision before each mutation and pass its `expectedRevision` and a unique idempotency key.
+4. Run a table before the full tab book. Check bases, sparse-cell warnings, significance policy, weighting limitations, and evidence IDs.
+5. Use the focused statistics server when a method is not part of the project-table result. Run `check_assumptions` and `recommend_test` before inferential interpretation, then an appropriate effect size.
+6. For open ends, call `code_open_ends` only after explicit external-processing approval. Review every theme and evidence example before `approve_coding`; never treat proposals as approved variables.
+7. For tracker replacements, run `detect_schema_drift`, review the repair plan, and apply only explicitly approved repair operation IDs. Preserve the prior wave and guarded inverse.
+8. Generate editable PPTX/DOCX packs from stable table IDs. For refresh, provide the manually edited source package and a new output path; never overwrite the source file.
+9. Read `crosstabs://evidence/limitations` for every material interpretation and `crosstabs://evidence/graph` when the answer needs public supporting URLs.
+10. End with the project revision, included/excluded data, tables and bases, methods, warnings, evidence, generated artifacts, approval state, and audit event IDs.
 
 ## Privacy and integrity
 
-- Keep respondent-level files local unless the user explicitly authorizes another boundary.
+- Keep respondent-level files local. The remote connector at `https://mcp.crosstabs.com/mcp` is aggregate-only and is not a substitute for `crosstabs-headless`.
 - Never infer causality from association or prediction alone.
 - Never report a p-value as proof of practical importance; include effect size and base.
 - Preserve zero, infinity, undefined, sparse-cell, and workload-limit states. Do not silently continuity-correct or coerce them.
@@ -29,7 +31,7 @@ Use the local MCP server for numerical claims. Keep every conclusion tied to its
 
 ## Product parity boundary
 
-This plugin is not the browser application. Do not invent MCP tools for weights, multibanners, significance letters, tab-book projects, open-end coding, editable PPTX/DOCX refresh, schema repair, waves, collaboration, or Vercel AI analysis. Use the browser workspace when those workflows are required, or implement the requested local workflow transparently with available file and document tools.
+The local headless server shares the browser workspace project service for the 23 published operations. This is workflow parity, not UI parity. Do not invent tools for shared cloud review, comments, connector authorization, arbitrary project row editing, or browser interaction state. Use the browser workspace when those surfaces are required.
 
 Read [parity-and-limits.md](references/parity-and-limits.md) when the request asks whether the plugin matches Crosstabs.com, needs unsupported workflows, or depends on scale limits.
 
@@ -42,4 +44,4 @@ End analysis with:
 - Assumption and multiplicity status.
 - A plain-language interpretation without causal overreach.
 - Evidence URLs or the evidence resource version.
-- Any app-only workflow required for the next step.
+- Any app-only collaboration or connector workflow required for the next step.

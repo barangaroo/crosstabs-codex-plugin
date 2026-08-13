@@ -2,28 +2,35 @@
 
 ## Current verified surface
 
-- PyPI package: `crosstabs==1.0.4`, Python 3.10+.
+- PyPI package: `crosstabs==1.1.0`, Python 3.10+, Node.js 20+ for the bundled headless server.
 - Transport: local MCP over stdio through `uvx`.
 - Numerical tools: 39 registered tools.
+- Project tools: exactly 23 registered operations, from `create_project` through `get_audit_history`.
 - Evidence resources: `crosstabs://evidence/graph` and `crosstabs://evidence/limitations`.
 - Input helpers: bounded records or CSV to a simple two-variable crosstab.
 - Inference labels: exact, asymptotic, or simulated where applicable.
 - Provenance: PyPI Trusted Publishing from `barangaroo/crosstabs-lite/.github/workflows/release-python-mcp.yml`.
 
-The Python package and browser application are separate implementations. Regression fixtures cover overlapping headline measures and public reference cases, but a shared source kernel does not make every application result automatically identical.
+The bundled headless server and browser workspace call the same TypeScript project service. The focused Python statistical server remains a separate numerical implementation covered by overlapping regression fixtures and public reference cases.
 
-## Browser workflows not exposed by plugin v0.1
+## Project workflows exposed by plugin v0.2
 
-- XLSX/SAV import UI and type-detection workflow.
-- Saved filters, row sets, weights, multibanners, category order, and export recipes.
-- Column-proportion significance letters and multiple-response-set workflow.
-- Tab-book persistence, project portability, replace/refresh, schema repair, and waves.
-- Open-end theme coding and approval history.
-- Editable PPTX/DOCX generation, refresh, and manual-edit preservation.
-- Aggregate share links, cloud review, comments, and connector authorization.
-- Vercel AI Gateway analysis and application activation analytics.
+- Local CSV, TSV, XLSX, SAV, and inline-record import with profiling and versioned waves.
+- Saved filters, row sets, weights, multibanners, category order, table order, and export recipes.
+- Crosstabs and tab books with bases, percentages, significance letters, warnings, and evidence.
+- Project portability, dataset replacement, schema-drift preview and approved repair, and wave comparison.
+- Open-end theme proposals, review, approval, auditable variables, and guarded undo.
+- Editable PPTX/DOCX generation, refresh, and manual-edit preservation for supported anchored regions.
+- Project inspection, paginated audit history, definition-only export by default, and explicitly authorized full-data export.
 
-For these requests, use the browser workspace at `https://www.crosstabs.com/workspace` or perform a clearly documented local workflow with other available Codex tools. Never imply that an unavailable MCP operation ran.
+## Separate browser or remote surfaces
+
+- Browser navigation, visual table editing, and browser-only interaction state.
+- Aggregate share links, shared cloud review, comments, and connector authorization.
+- The public remote connector exposes evidence and deterministic aggregate calculators only; it has no raw-file or respondent-row tool.
+- `code_open_ends` is the only local generative operation and requires explicit Vercel AI Gateway external-processing approval.
+
+For separate browser or collaboration requests, use `https://www.crosstabs.com/workspace`. Never imply that an unavailable MCP operation ran.
 
 ## Statistical boundaries
 

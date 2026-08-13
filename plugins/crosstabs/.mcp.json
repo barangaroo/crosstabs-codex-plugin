@@ -1,11 +1,19 @@
 {
   "mcpServers": {
-    "crosstabs": {
+    "crosstabs-statistics": {
       "command": "uvx",
       "args": [
         "--from",
-        "crosstabs==1.0.4",
+        "crosstabs==1.1.0",
         "crosstabs"
+      ]
+    },
+    "crosstabs-headless": {
+      "command": "uvx",
+      "args": [
+        "--from",
+        "crosstabs==1.1.0",
+        "crosstabs-headless"
       ]
     }
   }

@@ -11,7 +11,7 @@
     "surfaces"
   ],
   "properties": {
-    "schemaVersion": { "const": 1 },
+    "schemaVersion": { "const": 2 },
     "pluginVersion": { "type": "string" },
     "verifiedAt": { "type": "string", "format": "date-time" },
     "distribution": {
@@ -22,6 +22,9 @@
         "requirement",
         "transport",
         "toolCount",
+        "headlessToolCount",
+        "headlessTools",
+        "headlessResourceTemplates",
         "resourceUris",
         "registryRecord"
       ],
@@ -31,6 +34,19 @@
         "requirement": { "type": "string" },
         "transport": { "const": "stdio" },
         "toolCount": { "type": "integer", "minimum": 1 },
+        "headlessToolCount": { "type": "integer", "minimum": 1 },
+        "headlessTools": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "headlessResourceTemplates": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1,
+          "uniqueItems": true
+        },
         "resourceUris": {
           "type": "array",
           "items": { "type": "string" },

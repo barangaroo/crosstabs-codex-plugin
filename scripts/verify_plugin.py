@@ -70,16 +70,33 @@ def verify_local() -> dict[str, Any]:
     requirement = f"crosstabs=={version}"
     if distribution.get("requirement") != requirement:
         raise ValueError("parity package requirement is not exact")
-    expected_server = {
+    expected_statistics_server = {
         "command": "uvx",
         "args": ["--from", requirement, "crosstabs"],
     }
-    if mcp_config.get("mcpServers", {}).get("crosstabs") != expected_server:
-        raise ValueError("MCP config does not exactly match the parity package")
+    expected_headless_server = {
+        "command": "uvx",
+        "args": ["--from", requirement, "crosstabs-headless"],
+    }
+    expected_servers = {
+        "crosstabs-statistics": expected_statistics_server,
+        "crosstabs-headless": expected_headless_server,
+    }
+    if mcp_config.get("mcpServers") != expected_servers:
+        raise ValueError("MCP config does not expose both exact parity commands")
     if distribution.get("transport") != "stdio":
         raise ValueError("plugin transport must be stdio")
     if distribution.get("toolCount") != 39:
         raise ValueError("verified tool count must be 39")
+    headless_tools = distribution.get("headlessTools")
+    if not isinstance(headless_tools, list) or len(headless_tools) != 23:
+        raise ValueError("verified headless tool catalog must contain 23 names")
+    if distribution.get("headlessToolCount") != len(headless_tools):
+        raise ValueError("headless tool count differs from the exact catalog")
+    if distribution.get("headlessResourceTemplates") != [
+        "crosstabs://artifacts/{artifactId}"
+    ]:
+        raise ValueError("verified headless artifact template differs")
 
     resource_uris = distribution.get("resourceUris")
     if sorted(resource_uris or []) != [
@@ -124,6 +141,7 @@ def verify_local() -> dict[str, Any]:
         "pluginVersion": manifest["version"],
         "packageVersion": version,
         "surfaceCount": len(surfaces),
+        "headlessToolCount": len(headless_tools),
     }
 
 

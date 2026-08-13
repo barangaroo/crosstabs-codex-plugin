@@ -1,19 +1,48 @@
 {
   "$schema": "./parity.schema.json",
-  "schemaVersion": 1,
-  "pluginVersion": "0.1.0",
-  "verifiedAt": "2026-08-13T01:10:21Z",
+  "schemaVersion": 2,
+  "pluginVersion": "0.2.0",
+  "verifiedAt": "2026-08-13T03:30:00Z",
   "distribution": {
     "package": "crosstabs",
-    "version": "1.0.4",
-    "requirement": "crosstabs==1.0.4",
+    "version": "1.1.0",
+    "requirement": "crosstabs==1.1.0",
     "transport": "stdio",
     "toolCount": 39,
+    "headlessToolCount": 23,
+    "headlessTools": [
+      "create_project",
+      "import_dataset",
+      "profile_dataset",
+      "define_row_set",
+      "define_banner",
+      "apply_filter",
+      "set_weight",
+      "run_table",
+      "run_tab_book",
+      "compare_waves",
+      "code_open_ends",
+      "review_themes",
+      "approve_coding",
+      "undo_change",
+      "replace_dataset",
+      "detect_schema_drift",
+      "repair_schema",
+      "generate_report_pack",
+      "refresh_report_pack",
+      "export_project",
+      "list_projects",
+      "inspect_project",
+      "get_audit_history"
+    ],
+    "headlessResourceTemplates": [
+      "crosstabs://artifacts/{artifactId}"
+    ],
     "resourceUris": [
       "crosstabs://evidence/graph",
       "crosstabs://evidence/limitations"
     ],
-    "registryRecord": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.barangaroo%2Fcrosstabs/versions/1.0.4"
+    "registryRecord": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.barangaroo%2Fcrosstabs/versions/1.1.0"
   },
   "surfaces": [
     {
@@ -30,9 +59,9 @@
     },
     {
       "id": "raw-data-input",
-      "label": "Raw record and CSV aggregation helpers",
-      "status": "bounded",
-      "boundary": "Helpers support simple two-variable crosstabs within published tool payload and workload limits; large files should be aggregated locally first."
+      "label": "Local CSV, TSV, XLSX, SAV, and inline-record import",
+      "status": "verified",
+      "boundary": "The headless server imports supported respondent files locally into versioned project waves. Work remains bounded by the published multidimensional workload envelope."
     },
     {
       "id": "research-workflow",
@@ -43,32 +72,38 @@
     {
       "id": "project-model",
       "label": "Saved filters, row sets, weights, multibanners, ordering, and export recipes",
-      "status": "app-only",
-      "boundary": "Use the Crosstabs.com workspace; plugin v0.1 exposes no persistent tab-book project API."
+      "status": "verified",
+      "boundary": "The local crosstabs-headless server shares the workspace project service and persists filters, row sets, weights, multibanners, table order, waves, and export recipes."
     },
     {
       "id": "advanced-tabulation",
-      "label": "Significance letters, multiple-response sets, open-end coding, and theme approval",
-      "status": "app-only",
-      "boundary": "These workflows are not exposed by the plugin v0.1 MCP server."
+      "label": "Significance letters, open-end coding, and theme approval",
+      "status": "verified",
+      "boundary": "The local headless server runs tables and tab books with significance letters and supports evidence-linked open-end proposals, review, approval, materialized variables, and guarded undo."
     },
     {
       "id": "report-refresh",
       "label": "Editable PPTX/DOCX generation, refresh, and manual-edit preservation",
-      "status": "app-only",
-      "boundary": "These workflows are not exposed by the plugin v0.1 MCP server."
+      "status": "verified",
+      "boundary": "The local headless server generates editable PPTX/DOCX packs and refreshes compatible generated regions while preserving declared manual edits."
     },
     {
-      "id": "tracker-and-collaboration",
-      "label": "Replace/refresh, schema repair, waves, connectors, sharing, and cloud review",
+      "id": "tracker-workflow",
+      "label": "Replace/refresh, schema-drift detection and repair, and wave comparison",
+      "status": "verified",
+      "boundary": "The local headless server imports immutable replacement waves, previews and applies approved reversible schema repair plans, and compares compatible tables across waves."
+    },
+    {
+      "id": "collaboration",
+      "label": "Shared cloud review, comments, and optional connector authorization",
       "status": "app-only",
-      "boundary": "These workflows remain in the browser application and are not claimed as Codex plugin capabilities."
+      "boundary": "These networked collaboration surfaces remain separate from the local Codex plugin."
     },
     {
       "id": "gateway-ai",
-      "label": "Vercel AI Gateway analysis and application activation telemetry",
-      "status": "app-only",
-      "boundary": "The plugin runs the statistical server locally and does not invoke the application's cloud AI or analytics pipeline."
+      "label": "Vercel AI Gateway open-end coding",
+      "status": "bounded",
+      "boundary": "Only code_open_ends can invoke Vercel AI Gateway, only after explicit external-processing approval. Deterministic calculations, local projects, and exports do not use an LLM or application analytics."
     }
   ]
 }
