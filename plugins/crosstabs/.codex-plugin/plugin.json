@@ -1,6 +1,6 @@
 {
   "name": "crosstabs",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Complete auditable survey projects with 23 workflow tools and 39 statistical tools locally from Codex.",
   "author": {
     "name": "Crosstabs Team",
@@ -37,8 +37,7 @@
     "defaultPrompt": [
       "Analyze this survey file and build evidence-linked crosstabs.",
       "Create a weighted tab book, compare waves, and export an editable report pack.",
-      "Choose the right test for this contingency table and explain assumptions.",
-      "Audit these crosstabs for sparse cells, effect size, and multiple testing."
+      "Choose the right test for this contingency table and explain assumptions."
     ],
     "brandColor": "#1148F5",
     "composerIcon": "./assets/crosstabs-icon.svg",

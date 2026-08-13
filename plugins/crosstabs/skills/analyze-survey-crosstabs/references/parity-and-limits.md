@@ -2,7 +2,7 @@
 
 ## Current verified surface
 
-- PyPI package: `crosstabs==1.1.1`, Python 3.10+, Node.js 20+ for the bundled headless server.
+- PyPI package: `crosstabs==1.1.2`, Python 3.10+, Node.js 20+ for the bundled headless server.
 - Transport: local MCP over stdio through `uvx`.
 - Numerical tools: 39 registered tools.
 - Project tools: exactly 23 registered operations, from `create_project` through `get_audit_history`.
@@ -11,7 +11,7 @@
 - Inference labels: exact, asymptotic, or simulated where applicable.
 - Provenance: PyPI Trusted Publishing from `barangaroo/crosstabs-lite/.github/workflows/release-python-mcp.yml`.
 
-The bundled headless server and browser workspace share the same TypeScript `TabBookProject` model and project-domain modules. The focused Python statistical server remains a separate numerical implementation covered by overlapping regression fixtures and public reference cases.
+The bundled headless server and browser workspace share the TypeScript `TabBookProject` schema, initial-analysis policy, statistical kernels, and several project-domain modules. They do not yet use one orchestration service; full revision, audit, undo, and artifact-behavior parity remains a release gate. The focused Python statistical server remains a separate numerical implementation covered by overlapping regression fixtures and public reference cases.
 
 ## Project workflows exposed by plugin v0.2
 

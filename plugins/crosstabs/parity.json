@@ -1,12 +1,12 @@
 {
   "$schema": "./parity.schema.json",
   "schemaVersion": 2,
-  "pluginVersion": "0.2.1",
-  "verifiedAt": "2026-08-13T08:08:15Z",
+  "pluginVersion": "0.2.2",
+  "verifiedAt": "2026-08-13T10:38:53Z",
   "distribution": {
     "package": "crosstabs",
-    "version": "1.1.1",
-    "requirement": "crosstabs==1.1.1",
+    "version": "1.1.2",
+    "requirement": "crosstabs==1.1.2",
     "transport": "stdio",
     "toolCount": 39,
     "headlessToolCount": 23,
@@ -42,7 +42,7 @@
       "crosstabs://evidence/graph",
       "crosstabs://evidence/limitations"
     ],
-    "registryRecord": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.barangaroo%2Fcrosstabs/versions/1.1.1"
+    "registryRecord": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.barangaroo%2Fcrosstabs/versions/1.1.2"
   },
   "surfaces": [
     {
@@ -73,7 +73,7 @@
       "id": "project-model",
       "label": "Saved filters, row sets, weights, multibanners, ordering, and export recipes",
       "status": "verified",
-      "boundary": "The local crosstabs-headless server shares the workspace project service and persists filters, row sets, weights, multibanners, table order, waves, and export recipes."
+      "boundary": "The local crosstabs-headless server shares the workspace project schema, initial-analysis policy, statistical kernels, and several domain modules. Browser and headless orchestration services remain separate; full revision, audit, and undo parity is still release-gated."
     },
     {
       "id": "advanced-tabulation",
