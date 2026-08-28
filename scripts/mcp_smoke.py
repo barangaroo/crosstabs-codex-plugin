@@ -63,11 +63,13 @@ async def smoke() -> dict[str, object]:
         )
 
     return {
+        "packageVersion": expected["version"],
         "serverName": initialized.server_info.name,
         "serverVersion": initialized.server_info.version,
         "toolCount": len(tools.tools),
         "resourceUris": actual_resource_uris,
         "headlessServerName": headless_initialized.server_info.name,
+        "headlessServerVersion": headless_initialized.server_info.version,
         "headlessToolCount": len(headless_tools.tools),
         "headlessResourceTemplates": actual_templates,
         "status": "passed",

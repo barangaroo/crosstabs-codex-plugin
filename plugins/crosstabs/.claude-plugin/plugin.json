@@ -1,0 +1,23 @@
+{
+  "name": "crosstabs",
+  "version": "0.2.4",
+  "description": "Complete auditable survey projects with 23 workflow tools and 39 statistical tools locally from Claude Code.",
+  "author": {
+    "name": "Crosstabs Team",
+    "email": "support@crosstabs.com",
+    "url": "https://www.crosstabs.com/about"
+  },
+  "homepage": "https://www.crosstabs.com/mcp",
+  "repository": "https://github.com/barangaroo/crosstabs-codex-plugin",
+  "license": "MIT",
+  "keywords": [
+    "crosstabs",
+    "survey-research",
+    "statistics",
+    "contingency-tables",
+    "chi-square",
+    "mcp"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json"
+}

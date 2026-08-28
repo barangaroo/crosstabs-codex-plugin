@@ -11,8 +11,8 @@
     "surfaces"
   ],
   "properties": {
-    "schemaVersion": { "const": 2 },
-    "pluginVersion": { "type": "string" },
+    "schemaVersion": { "const": 3 },
+    "pluginVersion": { "const": "0.2.4" },
     "verifiedAt": { "type": "string", "format": "date-time" },
     "distribution": {
       "type": "object",
@@ -26,12 +26,13 @@
         "headlessTools",
         "headlessResourceTemplates",
         "resourceUris",
+        "registryName",
         "registryRecord"
       ],
       "properties": {
         "package": { "const": "crosstabs" },
-        "version": { "type": "string" },
-        "requirement": { "type": "string" },
+        "version": { "const": "1.1.6" },
+        "requirement": { "const": "crosstabs==1.1.6" },
         "transport": { "const": "stdio" },
         "toolCount": { "type": "integer", "minimum": 1 },
         "headlessToolCount": { "type": "integer", "minimum": 1 },
@@ -53,7 +54,10 @@
           "minItems": 1,
           "uniqueItems": true
         },
-        "registryRecord": { "type": "string", "format": "uri" }
+        "registryName": { "const": "io.github.crosstabs/crosstabs" },
+        "registryRecord": {
+          "const": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.crosstabs%2Fcrosstabs/versions/1.1.6"
+        }
       },
       "additionalProperties": false
     },

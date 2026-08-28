@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "candidate": {
+    "state": "local_release_candidate",
+    "published": false,
+    "pluginVersion": "0.2.4",
+    "packageVersion": "1.1.6",
+    "registryName": "io.github.crosstabs/crosstabs",
+    "immutableReference": null
+  },
+  "currentPublicRelease": {
+    "state": "published_marketplace_release",
+    "published": true,
+    "pluginVersion": "0.2.3",
+    "packageVersion": "1.1.3",
+    "registryName": "io.github.barangaroo/crosstabs",
+    "immutableReference": null
+  },
+  "promotionRequirements": [
+    "Commit the 0.2.4 candidate and publish an immutable public marketplace release reference.",
+    "Verify the exact published artifact against crosstabs==1.1.6 and io.github.crosstabs/crosstabs."
+  ]
+}

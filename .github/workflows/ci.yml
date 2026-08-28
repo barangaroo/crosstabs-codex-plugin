@@ -17,6 +17,11 @@ jobs:
       - name: Check out the marketplace
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
 
+      - name: Set up Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: "24"
+
       - name: Set up Python
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
         with:
@@ -27,8 +32,11 @@ jobs:
         with:
           version: "0.11.7"
 
-      - name: Verify manifests, paths, parity contract, PyPI, and MCP Registry
+      - name: Verify plugin 0.2.4 against crosstabs 1.1.6 and MCP Registry
         run: python scripts/verify_plugin.py --live
+
+      - name: Validate the Claude plugin package
+        run: npx --yes @anthropic-ai/claude-code@2.1.201 plugin validate --strict plugins/crosstabs
 
       - name: Prove the packaged stdio transport
         run: uv run --isolated --python 3.12 --with "mcp>=1.0.0" python scripts/mcp_smoke.py
