@@ -45,7 +45,7 @@ remote Claude Connector is a separate hosted-MCP submission path.
 - MCP handshakes: exactly 23 headless workflow tools; 39 statistical tools and two evidence resources over local stdio.
 - Machine-readable candidate boundary: [`plugins/crosstabs/parity.json`](plugins/crosstabs/parity.json) and [`plugins/crosstabs/release-state.json`](plugins/crosstabs/release-state.json).
 
-Every push and pull request checks the candidate manifests, exact package requirement, parity contract, PyPI record, official MCP Registry record, and a live stdio handshake. Publication additionally requires committing the candidate and publishing an immutable public marketplace release reference.
+Every push and pull request checks the candidate manifests, exact package requirement, parity contract, PyPI record, official MCP Registry record, and a live stdio handshake. Publication additionally requires publishing this locally committed candidate through an immutable public marketplace release reference.
 
 - Product: https://www.crosstabs.com/
 - MCP documentation: https://www.crosstabs.com/mcp

@@ -21,7 +21,7 @@ EXPECTED_REGISTRY_NAME = "io.github.crosstabs/crosstabs"
 EXPECTED_RELEASE_STATE = {
     "schemaVersion": 1,
     "candidate": {
-        "state": "local_release_candidate",
+        "state": "local_committed_candidate",
         "published": False,
         "pluginVersion": EXPECTED_PLUGIN_VERSION,
         "packageVersion": EXPECTED_PACKAGE_VERSION,
@@ -37,7 +37,7 @@ EXPECTED_RELEASE_STATE = {
         "immutableReference": None,
     },
     "promotionRequirements": [
-        "Commit the 0.2.4 candidate and publish an immutable public marketplace release reference.",
+        "Publish the locally committed 0.2.4 candidate through an immutable public marketplace release reference.",
         "Verify the exact published artifact against crosstabs==1.1.6 and io.github.crosstabs/crosstabs.",
     ],
 }
