@@ -2,14 +2,14 @@
   "$schema": "./parity.schema.json",
   "schemaVersion": 3,
   "pluginVersion": "0.2.4",
-  "verifiedAt": "2026-08-28T11:00:25Z",
+  "verifiedAt": "2026-09-01T01:01:34Z",
   "distribution": {
     "package": "crosstabs",
-    "version": "1.1.6",
-    "requirement": "crosstabs==1.1.6",
+    "version": "1.2.0",
+    "requirement": "crosstabs==1.2.0",
     "transport": "stdio",
     "toolCount": 39,
-    "headlessToolCount": 23,
+    "headlessToolCount": 24,
     "headlessTools": [
       "create_project",
       "import_dataset",
@@ -33,7 +33,8 @@
       "export_project",
       "list_projects",
       "inspect_project",
-      "get_audit_history"
+      "get_audit_history",
+      "define_survey_design"
     ],
     "headlessResourceTemplates": [
       "crosstabs://artifacts/{artifactId}"
@@ -43,7 +44,7 @@
       "crosstabs://evidence/limitations"
     ],
     "registryName": "io.github.crosstabs/crosstabs",
-    "registryRecord": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.crosstabs%2Fcrosstabs/versions/1.1.6"
+    "registryRecord": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.crosstabs%2Fcrosstabs/versions/1.2.0"
   },
   "surfaces": [
     {

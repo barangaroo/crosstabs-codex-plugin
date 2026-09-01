@@ -31,7 +31,7 @@ Use `crosstabs-headless` for end-to-end research projects and `crosstabs-statist
 
 ## Product parity boundary
 
-The local headless server shares the browser workspace project service for the 23 published operations. This is workflow parity, not UI parity. Do not invent tools for shared cloud review, comments, connector authorization, arbitrary project row editing, or browser interaction state. Use the browser workspace when those surfaces are required.
+The local headless server shares the browser workspace project service for the 24 local candidate operations. This is workflow parity, not UI parity. Do not invent tools for shared cloud review, comments, connector authorization, arbitrary project row editing, or browser interaction state. Use the browser workspace when those surfaces are required.
 
 Read [parity-and-limits.md](references/parity-and-limits.md) when the request asks whether the plugin matches Crosstabs.com, needs unsupported workflows, or depends on scale limits.
 

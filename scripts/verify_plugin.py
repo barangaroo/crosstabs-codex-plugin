@@ -16,8 +16,34 @@ from urllib.parse import quote
 ROOT = Path(__file__).resolve().parents[1]
 PLUGIN_ROOT = ROOT / "plugins" / "crosstabs"
 EXPECTED_PLUGIN_VERSION = "0.2.4"
-EXPECTED_PACKAGE_VERSION = "1.1.6"
+EXPECTED_PACKAGE_VERSION = "1.2.0"
 EXPECTED_REGISTRY_NAME = "io.github.crosstabs/crosstabs"
+EXPECTED_HEADLESS_TOOLS = [
+    "create_project",
+    "import_dataset",
+    "profile_dataset",
+    "define_row_set",
+    "define_banner",
+    "apply_filter",
+    "set_weight",
+    "run_table",
+    "run_tab_book",
+    "compare_waves",
+    "code_open_ends",
+    "review_themes",
+    "approve_coding",
+    "undo_change",
+    "replace_dataset",
+    "detect_schema_drift",
+    "repair_schema",
+    "generate_report_pack",
+    "refresh_report_pack",
+    "export_project",
+    "list_projects",
+    "inspect_project",
+    "get_audit_history",
+    "define_survey_design",
+]
 EXPECTED_RELEASE_STATE = {
     "schemaVersion": 1,
     "candidate": {
@@ -38,7 +64,7 @@ EXPECTED_RELEASE_STATE = {
     },
     "promotionRequirements": [
         "Publish the locally committed 0.2.4 candidate through an immutable public marketplace release reference.",
-        "Verify the exact published artifact against crosstabs==1.1.6 and io.github.crosstabs/crosstabs.",
+        "Verify the exact published artifact against crosstabs==1.2.0 and io.github.crosstabs/crosstabs.",
     ],
 }
 
@@ -152,9 +178,9 @@ def verify_local() -> dict[str, Any]:
     if distribution.get("toolCount") != 39:
         raise ValueError("verified tool count must be 39")
     headless_tools = distribution.get("headlessTools")
-    if not isinstance(headless_tools, list) or len(headless_tools) != 23:
-        raise ValueError("verified headless tool catalog must contain 23 names")
-    if distribution.get("headlessToolCount") != len(headless_tools):
+    if headless_tools != EXPECTED_HEADLESS_TOOLS:
+        raise ValueError("verified headless tool catalog does not match the 1.2.0 candidate")
+    if distribution.get("headlessToolCount") != len(EXPECTED_HEADLESS_TOOLS):
         raise ValueError("headless tool count differs from the exact catalog")
     if distribution.get("headlessResourceTemplates") != [
         "crosstabs://artifacts/{artifactId}"

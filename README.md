@@ -1,8 +1,8 @@
 # Crosstabs for Codex
 
-Complete auditable survey projects from Codex. The plugin installs `crosstabs==1.1.6` on demand with `uvx` and exposes two local MCP servers: 23 end-to-end project operations plus 39 focused statistical tools and versioned evidence resources.
+Complete auditable survey projects from Codex. The plugin is prepared to install the unpublished local candidate `crosstabs==1.2.0` on demand with `uvx` and exposes two local MCP servers: 24 end-to-end project operations plus 39 focused statistical tools and versioned evidence resources.
 
-Version 0.2.4 is a local release candidate, not the current public Codex marketplace release. It is prepared to pin `crosstabs==1.1.6` and the `io.github.crosstabs/crosstabs` Registry identity after publication. The currently published marketplace release remains 0.2.3, which pins `crosstabs==1.1.3` and the legacy `io.github.barangaroo/crosstabs` identity. Version 0.2.4 shares the workspace project schema, initial-analysis policy, deterministic statistical kernels, and several project-domain modules. Browser and headless orchestration services are still separate, so full revision, audit, undo, artifact, shared-review, comment, and connector-authorization parity remains explicitly release-gated.
+Version 0.2.4 is a local release candidate, not the current public Codex marketplace release. It is prepared to pin the unpublished local candidate `crosstabs==1.2.0` and the `io.github.crosstabs/crosstabs` Registry identity after external publication. The currently published marketplace release remains 0.2.3, which pins `crosstabs==1.1.3` and the legacy `io.github.barangaroo/crosstabs` identity. Version 0.2.4 shares the workspace project schema, initial-analysis policy, deterministic statistical kernels, and several project-domain modules. Browser and headless orchestration services are still separate, so full revision, audit, undo, artifact, shared-review, comment, and connector-authorization parity remains explicitly release-gated.
 
 ## Install
 
@@ -39,17 +39,17 @@ remote Claude Connector is a separate hosted-MCP submission path.
 ## Candidate surface (not a public release)
 
 - Candidate Codex plugin: `0.2.4`, unpublished.
-- Candidate Python/MCP pin: immutable `crosstabs==1.1.6`.
-- Candidate Registry pin: `io.github.crosstabs/crosstabs` 1.1.6, active/latest.
+- Candidate Python/MCP pin: exact local candidate `crosstabs==1.2.0` (external publication pending).
+- Candidate Registry pin: intended `io.github.crosstabs/crosstabs` 1.2.0 record (external publication pending).
 - Current public marketplace artifact: plugin `0.2.3`, `crosstabs==1.1.3`, and `io.github.barangaroo/crosstabs`.
-- MCP handshakes: exactly 23 headless workflow tools; 39 statistical tools and two evidence resources over local stdio.
+- MCP handshakes: exactly 24 headless workflow tools; 39 statistical tools and two evidence resources over local stdio once the candidate package is published.
 - Machine-readable candidate boundary: [`plugins/crosstabs/parity.json`](plugins/crosstabs/parity.json) and [`plugins/crosstabs/release-state.json`](plugins/crosstabs/release-state.json).
 
-Every push and pull request checks the candidate manifests, exact package requirement, parity contract, PyPI record, official MCP Registry record, and a live stdio handshake. Publication additionally requires publishing this locally committed candidate through an immutable public marketplace release reference.
+Every push and pull request checks the local candidate manifests, exact package requirement, parity contract, and candidate/public boundary. The live PyPI, MCP Registry, and stdio checks are promotion gates once `crosstabs==1.2.0` is externally published. Publication additionally requires publishing this locally committed candidate through an immutable public marketplace release reference.
 
 - Product: https://www.crosstabs.com/
 - MCP documentation: https://www.crosstabs.com/mcp
 - Agent product: https://ai.crosstabs.com/
 - Remote aggregate MCP: https://mcp.crosstabs.com/mcp
-- PyPI: https://pypi.org/project/crosstabs/1.1.6/
+- PyPI candidate URL (pending publication): https://pypi.org/project/crosstabs/1.2.0/
 - Privacy: https://www.crosstabs.com/privacy

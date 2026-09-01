@@ -4,7 +4,7 @@
     "state": "local_committed_candidate",
     "published": false,
     "pluginVersion": "0.2.4",
-    "packageVersion": "1.1.6",
+    "packageVersion": "1.2.0",
     "registryName": "io.github.crosstabs/crosstabs",
     "immutableReference": null
   },
@@ -18,6 +18,6 @@
   },
   "promotionRequirements": [
     "Publish the locally committed 0.2.4 candidate through an immutable public marketplace release reference.",
-    "Verify the exact published artifact against crosstabs==1.1.6 and io.github.crosstabs/crosstabs."
+    "Verify the exact published artifact against crosstabs==1.2.0 and io.github.crosstabs/crosstabs."
   ]
 }
