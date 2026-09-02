@@ -13,6 +13,11 @@
 
 The 21-tool project catalog and both MCP commands are machine-readable in `../../../parity.json` and `../../../.mcp.json`. Candidate validation uses the current locally built headless bundle so it does not resolve the unpublished package pin.
 
+Publication is held until the current single-file project store has a measured
+end-to-end persistence and execution envelope or enforces a lower project
+limit. Parser admission ceilings are not a guarantee that a maximum-size
+project can be saved, reloaded, and analyzed.
+
 ## Project workflows exposed by plugin 0.2.5
 
 - Local CSV, TSV, XLSX, SAV, and inline-record import with profiling and versioned waves.
@@ -39,5 +44,7 @@ Never imply that an operation absent from the exact 21-tool catalog ran.
 - Complex-sample inference requires an explicit approved survey design and supported Taylor or replicate-weight configuration; unsupported settings fail closed.
 - Cellwise residual and column-comparison flags need multiplicity and base-size judgment.
 - Tested capacity fixtures are bounded envelopes, not an unlimited-row guarantee.
+- The unpublished candidate has no established maximum for persisted project
+  rows/cells; do not extrapolate parser admission limits to persistence.
 
 Plugin parity contract: `../../../parity.json`.

@@ -21,6 +21,12 @@ Together the two servers declare 60 tools. The 21-tool headless catalog is recor
 
 The exact `uvx` commands are present in [`plugins/crosstabs/.mcp.json`](plugins/crosstabs/.mcp.json) for package parity, but they cannot substantiate this candidate until `crosstabs==1.2.0` is independently published. Do not install or promote this repository as part of local candidate validation.
 
+Publication is also held until the headless server's single-file project store
+has a measured end-to-end persistence and execution envelope or enforces a
+lower project limit. The parser's 50 MiB, 1,000,000-row, and 20,000,000-cell
+admission ceilings are not a promise that projects at those maxima can be
+safely saved, reloaded, and analyzed.
+
 ## Local validation
 
 Run the source-only verifier:
