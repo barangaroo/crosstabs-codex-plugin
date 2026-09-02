@@ -1,15 +1,18 @@
 {
   "$schema": "./parity.schema.json",
-  "schemaVersion": 3,
-  "pluginVersion": "0.2.4",
-  "verifiedAt": "2026-09-01T01:01:34Z",
+  "schemaVersion": 4,
+  "pluginVersion": "0.2.5",
+  "verifiedAt": "2026-09-02T08:01:18Z",
+  "verificationScope": "local_candidate",
   "distribution": {
     "package": "crosstabs",
     "version": "1.2.0",
     "requirement": "crosstabs==1.2.0",
+    "packagePublished": false,
     "transport": "stdio",
     "toolCount": 39,
-    "headlessToolCount": 24,
+    "headlessToolCount": 21,
+    "totalToolCount": 60,
     "headlessTools": [
       "create_project",
       "import_dataset",
@@ -21,9 +24,6 @@
       "run_table",
       "run_tab_book",
       "compare_waves",
-      "code_open_ends",
-      "review_themes",
-      "approve_coding",
       "undo_change",
       "replace_dataset",
       "detect_schema_drift",
@@ -44,68 +44,62 @@
       "crosstabs://evidence/limitations"
     ],
     "registryName": "io.github.crosstabs/crosstabs",
-    "registryRecord": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.crosstabs%2Fcrosstabs/versions/1.2.0"
+    "registryRecord": null
   },
   "surfaces": [
     {
       "id": "statistical-tools",
       "label": "Contingency-table tests, measures, diagnostics, and chart data",
-      "status": "verified",
-      "boundary": "Thirty-nine registered numerical tools are available through the local MCP server."
+      "status": "local-candidate",
+      "boundary": "The package candidate declares 39 focused numerical tools through the local statistics server."
     },
     {
       "id": "evidence-resources",
-      "label": "Versioned methods, limitations, and public evidence links",
-      "status": "verified",
-      "boundary": "Two MCP resources are available and are required by the plugin workflow for material interpretations."
+      "label": "Versioned methods and limitations",
+      "status": "local-candidate",
+      "boundary": "The package candidate declares two evidence resources through the local statistics server."
     },
     {
       "id": "raw-data-input",
       "label": "Local CSV, TSV, XLSX, SAV, and inline-record import",
-      "status": "verified",
-      "boundary": "The headless server imports supported respondent files locally into versioned project waves. Work remains bounded by the published multidimensional workload envelope."
+      "status": "local-candidate",
+      "boundary": "The headless server imports supported respondent files into local versioned project waves within bounded workload limits."
     },
     {
       "id": "research-workflow",
       "label": "Assumption-aware, evidence-linked survey analysis guidance",
-      "status": "verified",
-      "boundary": "The Codex skill requires bases, assumptions, effect sizes, multiplicity status, limitations, and non-causal wording."
+      "status": "local-candidate",
+      "boundary": "The shared skill requires bases, assumptions, effect sizes, multiplicity status, limitations, and non-causal wording."
     },
     {
       "id": "project-model",
-      "label": "Saved filters, row sets, weights, multibanners, ordering, and export recipes",
-      "status": "verified",
-      "boundary": "The local crosstabs-headless server shares the workspace project schema, initial-analysis policy, statistical kernels, and several domain modules. Browser and headless orchestration services remain separate; full revision, audit, and undo parity is still release-gated."
+      "label": "Saved filters, row sets, weights, survey designs, multibanners, ordering, and export recipes",
+      "status": "local-candidate",
+      "boundary": "The local headless bundle uses versioned project revisions, idempotency keys, audit events, and guarded reversible mutations."
     },
     {
       "id": "advanced-tabulation",
-      "label": "Significance letters, open-end coding, and theme approval",
-      "status": "verified",
-      "boundary": "The local headless server runs tables and tab books with significance letters and supports evidence-linked open-end proposals, review, approval, materialized variables, and guarded undo."
+      "label": "Significance letters and approved complex-survey designs",
+      "status": "local-candidate",
+      "boundary": "Tables and tab books include supported significance diagnostics, while complex-sample inference requires an explicit approved design."
     },
     {
       "id": "report-refresh",
-      "label": "Editable PPTX/DOCX generation, refresh, and manual-edit preservation",
-      "status": "verified",
-      "boundary": "The local headless server generates editable PPTX/DOCX packs and refreshes compatible generated regions while preserving declared manual edits."
+      "label": "Editable PPTX/DOCX generation and refresh",
+      "status": "local-candidate",
+      "boundary": "The local headless server generates editable report packs and refreshes compatible generated regions without overwriting the source package."
     },
     {
       "id": "tracker-workflow",
-      "label": "Replace/refresh, schema-drift detection and repair, and wave comparison",
-      "status": "verified",
-      "boundary": "The local headless server imports immutable replacement waves, previews and applies approved reversible schema repair plans, and compares compatible tables across waves."
+      "label": "Replacement waves, schema-drift detection and repair, and wave comparison",
+      "status": "local-candidate",
+      "boundary": "The local headless server preserves prior waves, previews repairs, applies approved reversible operations, and compares compatible tables."
     },
     {
-      "id": "collaboration",
-      "label": "Shared cloud review, comments, and optional connector authorization",
-      "status": "app-only",
-      "boundary": "These networked collaboration surfaces remain separate from the local Codex plugin."
-    },
-    {
-      "id": "gateway-ai",
-      "label": "Vercel AI Gateway open-end coding",
+      "id": "device-local-boundary",
+      "label": "On-device project execution",
       "status": "bounded",
-      "boundary": "Only code_open_ends can invoke Vercel AI Gateway, only after explicit external-processing approval. Deterministic calculations, local projects, and exports do not use an LLM or application analytics."
+      "boundary": "The plugin candidate uses local stdio processes and user-controlled storage; its package pin is unpublished and no Registry record is declared."
     }
   ]
 }

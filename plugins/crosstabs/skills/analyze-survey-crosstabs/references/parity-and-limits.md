@@ -2,46 +2,42 @@
 
 ## Current local candidate surface
 
-- Local package candidate: `crosstabs==1.2.0`, Python 3.10+, Node.js 20+ for the bundled headless server. External PyPI and Registry release evidence remains pending.
-- Transport: local MCP over stdio through `uvx`.
-- Numerical tools: 39 registered tools.
-- Project tools: exactly 24 local candidate operations, from `create_project` through `define_survey_design`.
-- Evidence resources: `crosstabs://evidence/graph` and `crosstabs://evidence/limitations`.
-- Input helpers: bounded records or CSV to a simple two-variable crosstab.
-- Inference labels: exact, asymptotic, or simulated where applicable.
-- Candidate provenance target: PyPI Trusted Publishing from `barangaroo/crosstabs-lite/.github/workflows/release-python-mcp.yml`; the `1.2.0` external artifact is not yet published.
+- Plugin candidate: `0.2.5`, unpublished.
+- Exact package candidate: `crosstabs==1.2.0`, unpublished.
+- Runtime: Python 3.10+ and Node.js 22+ for the bundled headless server.
+- Transport: local MCP over stdio.
+- Numerical server: 39 focused statistical tools and two evidence resources.
+- Project server: exactly 21 deterministic tools, from project creation and data import through approved survey designs, reports, export, and audit history.
+- Total declared tool count across both servers: 60.
+- Package Registry identity: `io.github.crosstabs/crosstabs`; no `1.2.0` Registry record is claimed.
 
-The bundled headless server and browser workspace share the TypeScript `TabBookProject` schema, initial-analysis policy, statistical kernels, and several project-domain modules. They do not yet use one orchestration service; full revision, audit, undo, and artifact-behavior parity remains a release gate. The focused Python statistical server remains a separate numerical implementation covered by overlapping regression fixtures and public reference cases.
+The 21-tool project catalog and both MCP commands are machine-readable in `../../../parity.json` and `../../../.mcp.json`. Candidate validation uses the current locally built headless bundle so it does not resolve the unpublished package pin.
 
-## Project workflows exposed by plugin v0.2
+## Project workflows exposed by plugin 0.2.5
 
 - Local CSV, TSV, XLSX, SAV, and inline-record import with profiling and versioned waves.
-- Saved filters, row sets, weights, multibanners, category order, table order, and export recipes.
-- Crosstabs and tab books with bases, percentages, significance letters, warnings, and evidence.
+- Saved filters, row sets, weights, approved survey designs, multibanners, category order, table order, and export recipes.
+- Crosstabs and tab books with bases, percentages, significance letters, warnings, complex-sample diagnostics where supported, and evidence metadata.
 - Project portability, dataset replacement, schema-drift preview and approved repair, and wave comparison.
-- Open-end theme proposals, review, approval, auditable variables, and guarded undo.
-- Editable PPTX/DOCX generation, refresh, and manual-edit preservation for supported anchored regions.
+- Editable PPTX/DOCX generation and non-overwriting refresh for supported generated regions.
 - Project inspection, paginated audit history, definition-only export by default, and explicitly authorized full-data export.
 
-## Separate browser or remote surfaces
+## Operations outside the plugin catalog
 
-- Browser navigation, visual table editing, and browser-only interaction state.
-- Aggregate share links, shared cloud review, comments, and connector authorization.
-- The public remote connector exposes evidence and deterministic aggregate calculators only; it has no raw-file or respondent-row tool.
-- `code_open_ends` is the only local generative operation and requires explicit Vercel AI Gateway external-processing approval.
+- Visual navigation, direct table editing, and interface interaction state.
+- Unlisted project mutations or filesystem access outside the configured local roots.
+- Any operation that transfers respondent rows or project state out of the local process.
 
-For separate browser or collaboration requests, use `https://www.crosstabs.com/workspace`. Never imply that an unavailable MCP operation ran.
+Never imply that an operation absent from the exact 21-tool catalog ran.
 
 ## Statistical boundaries
 
 - Association and prediction do not establish causality.
 - Pearson chi-square and G-test p-values are asymptotic.
 - Fisher's exact test is restricted to eligible unweighted 2×2 integer-frequency tables.
-- Weighted inference is approximate unless weights are genuine frequency weights; complex-survey variance is not implemented.
+- Ordinary weighted inference is approximate unless weights are genuine frequency weights.
+- Complex-sample inference requires an explicit approved survey design and supported Taylor or replicate-weight configuration; unsupported settings fail closed.
 - Cellwise residual and column-comparison flags need multiplicity and base-size judgment.
-- Published capacity fixtures are tested envelopes, not an unlimited-row guarantee.
-- Named independent statistical review remains pending until public review evidence is recorded.
+- Tested capacity fixtures are bounded envelopes, not an unlimited-row guarantee.
 
-Canonical evidence: `https://www.crosstabs.com/evidence.json`.
-Full machine-readable reference: `https://www.crosstabs.com/llms-full.txt`.
 Plugin parity contract: `../../../parity.json`.

@@ -1,55 +1,46 @@
-# Crosstabs for Codex
+# Crosstabs for Codex and Claude Code
 
-Complete auditable survey projects from Codex. The plugin is prepared to install the unpublished local candidate `crosstabs==1.2.0` on demand with `uvx` and exposes two local MCP servers: 24 end-to-end project operations plus 39 focused statistical tools and versioned evidence resources.
+This repository contains local plugin candidate `0.2.5`. It pins the unpublished package candidate `crosstabs==1.2.0` and is not an installable public release.
 
-Version 0.2.4 is a local release candidate, not the current public Codex marketplace release. It is prepared to pin the unpublished local candidate `crosstabs==1.2.0` and the `io.github.crosstabs/crosstabs` Registry identity after external publication. The currently published marketplace release remains 0.2.3, which pins `crosstabs==1.1.3` and the legacy `io.github.barangaroo/crosstabs` identity. Version 0.2.4 shares the workspace project schema, initial-analysis policy, deterministic statistical kernels, and several project-domain modules. Browser and headless orchestration services are still separate, so full revision, audit, undo, artifact, shared-review, comment, and connector-authorization parity remains explicitly release-gated.
+The candidate declares two on-device stdio MCP servers:
 
-## Install
+- `crosstabs-headless`: exactly 21 deterministic project-workflow tools for local files, versioned projects, tabulation, approved survey designs, tracker repair, editable report packs, export, and audit history.
+- `crosstabs-statistics`: 39 focused statistical tools plus two local evidence resources.
+
+Together the two servers declare 60 tools. The 21-tool headless catalog is recorded exactly in [`plugins/crosstabs/parity.json`](plugins/crosstabs/parity.json). The package pin is intentionally unpublished, and no package-index, Registry-record, marketplace, directory-review, approval, or availability claim is made for this candidate.
+
+## Local candidate boundary
+
+- Plugin version: `0.2.5`.
+- Exact package requirement: `crosstabs==1.2.0`.
+- Transport: local stdio only.
+- Runtime: Python 3.10 or newer and Node.js 22 or newer.
+- Project files, respondent rows, project state, calculations, and generated reports remain in the user-controlled local process and filesystem.
+- The declared Registry identity is `io.github.crosstabs/crosstabs`; `1.2.0` has no Registry record in this candidate.
+- The historical public plugin boundary is recorded separately in [`plugins/crosstabs/release-state.json`](plugins/crosstabs/release-state.json) and must not be confused with this candidate.
+
+The exact `uvx` commands are present in [`plugins/crosstabs/.mcp.json`](plugins/crosstabs/.mcp.json) for package parity, but they cannot substantiate this candidate until `crosstabs==1.2.0` is independently published. Do not install or promote this repository as part of local candidate validation.
+
+## Local validation
+
+Run the source-only verifier:
 
 ```bash
-codex plugin marketplace add barangaroo/crosstabs-codex-plugin --ref main
-codex plugin add crosstabs@crosstabs
+python3 scripts/verify_plugin.py
 ```
 
-`--ref main` installs the development/candidate marketplace source; it is not
-an immutable reference for reproducing the public 0.2.3 marketplace artifact.
-
-Start a new Codex task after installation, then ask:
-
-> Analyze this survey file and build evidence-linked crosstabs.
-
-The plugin requires `uv`/`uvx`, Python 3.10 or newer, and Node.js 20 or newer for the bundled headless server. Respondent files, projects, calculations, and report generation run locally over stdio. Only `code_open_ends` can invoke Vercel AI Gateway, and it requires explicit external-processing approval.
-
-## Claude Code candidate
-
-The same candidate root now contains a separate
-[`plugins/crosstabs/.claude-plugin/plugin.json`](plugins/crosstabs/.claude-plugin/plugin.json)
-for Claude Code. It reuses the exact `skills/` tree and `.mcp.json` package pins
-instead of maintaining a second behavior fork. Validate or load it locally with:
+Validate the shared Claude Code package structure when the Claude CLI is available:
 
 ```bash
 npx --yes @anthropic-ai/claude-code@2.1.201 plugin validate --strict plugins/crosstabs
-claude --plugin-dir ./plugins/crosstabs
 ```
 
-This Claude package is an unpublished local candidate. It has not been
-submitted to, approved by, or published in Anthropic's plugin directory. The
-remote Claude Connector is a separate hosted-MCP submission path.
+Smoke the headless contract against a locally built product bundle without resolving the unpublished package:
 
-## Candidate surface (not a public release)
+```bash
+uv run --isolated --python 3.12 --with "mcp>=1.0.0" \
+  python scripts/mcp_smoke.py \
+  --headless-bundle ../crosstabs-lite/mcp-server-python/crosstabs_mcp/headless-mcp.mjs
+```
 
-- Candidate Codex plugin: `0.2.4`, unpublished.
-- Candidate Python/MCP pin: exact local candidate `crosstabs==1.2.0` (external publication pending).
-- Candidate Registry pin: intended `io.github.crosstabs/crosstabs` 1.2.0 record (external publication pending).
-- Current public marketplace artifact: plugin `0.2.3`, `crosstabs==1.1.3`, and `io.github.barangaroo/crosstabs`.
-- MCP handshakes: exactly 24 headless workflow tools; 39 statistical tools and two evidence resources over local stdio once the candidate package is published.
-- Machine-readable candidate boundary: [`plugins/crosstabs/parity.json`](plugins/crosstabs/parity.json) and [`plugins/crosstabs/release-state.json`](plugins/crosstabs/release-state.json).
-
-Every push and pull request checks the local candidate manifests, exact package requirement, parity contract, and candidate/public boundary. The live PyPI, MCP Registry, and stdio checks are promotion gates once `crosstabs==1.2.0` is externally published. Publication additionally requires publishing this locally committed candidate through an immutable public marketplace release reference.
-
-- Product: https://www.crosstabs.com/
-- MCP documentation: https://www.crosstabs.com/mcp
-- Agent product: https://ai.crosstabs.com/
-- Remote aggregate MCP: https://mcp.crosstabs.com/mcp
-- PyPI candidate URL (pending publication): https://pypi.org/project/crosstabs/1.2.0/
-- Privacy: https://www.crosstabs.com/privacy
+The Codex and Claude manifests reuse the same `skills/` tree and `.mcp.json`; there is no second behavior fork.

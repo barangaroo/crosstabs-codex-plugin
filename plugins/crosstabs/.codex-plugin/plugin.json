@@ -1,7 +1,7 @@
 {
   "name": "crosstabs",
-  "version": "0.2.4",
-  "description": "Complete auditable survey projects with 24 workflow tools and 39 statistical tools locally from Codex.",
+  "version": "0.2.5",
+  "description": "Use 21 deterministic project-workflow tools and 39 focused statistical tools locally from Codex.",
   "author": {
     "name": "Crosstabs Team",
     "email": "support@crosstabs.com",
@@ -23,7 +23,7 @@
   "interface": {
     "displayName": "Crosstabs",
     "shortDescription": "Auditable survey crosstabs and statistical tests",
-    "longDescription": "Complete categorical and survey research in Codex with two local Crosstabs MCP servers. The plugin provides 24 project-workflow operations, 39 focused numerical tools, versioned evidence resources, editable PPTX/DOCX packs, tracker repair, governed open-end coding, project export, and audit history. Respondent files stay local; only explicitly approved open-end coding uses Vercel AI Gateway.",
+    "longDescription": "Run categorical and survey research in Codex with two local stdio MCP servers. The candidate provides 21 deterministic project-workflow tools, 39 focused numerical tools, local evidence resources, editable PPTX/DOCX packs, survey-design definitions, tracker repair, project export, and audit history. Respondent files and project state stay on the user's device.",
     "developerName": "Crosstabs Team",
     "category": "Data & Analytics",
     "capabilities": [
@@ -36,7 +36,7 @@
     "termsOfServiceURL": "https://www.crosstabs.com/terms",
     "defaultPrompt": [
       "Analyze this survey file and build evidence-linked crosstabs.",
-      "Create a weighted tab book, compare waves, and export an editable report pack.",
+      "Create a weighted tab book, define the approved survey design, and export an editable report pack.",
       "Choose the right test for this contingency table and explain assumptions."
     ],
     "brandColor": "#1148F5",

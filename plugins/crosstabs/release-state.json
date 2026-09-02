@@ -1,12 +1,16 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "candidate": {
-    "state": "local_committed_candidate",
+    "state": "local_committed_unpublished_candidate",
     "published": false,
-    "pluginVersion": "0.2.4",
+    "packagePublished": false,
+    "registryPublished": false,
+    "pluginVersion": "0.2.5",
     "packageVersion": "1.2.0",
     "registryName": "io.github.crosstabs/crosstabs",
-    "immutableReference": null
+    "registryRecord": null,
+    "immutableReference": null,
+    "verificationScope": "local_candidate"
   },
   "currentPublicRelease": {
     "state": "published_marketplace_release",
@@ -17,7 +21,8 @@
     "immutableReference": null
   },
   "promotionRequirements": [
-    "Publish the locally committed 0.2.4 candidate through an immutable public marketplace release reference.",
-    "Verify the exact published artifact against crosstabs==1.2.0 and io.github.crosstabs/crosstabs."
+    "Publish crosstabs==1.2.0 and verify its exact Registry record before making a package or Registry availability claim.",
+    "Publish plugin 0.2.5 from an immutable source reference before making a marketplace or directory availability claim.",
+    "Repeat strict host validation and both MCP server smoke checks against the exact published artifacts."
   ]
 }
