@@ -4,10 +4,10 @@ This repository contains local plugin candidate `0.2.5`. It pins the unpublished
 
 The candidate declares two on-device stdio MCP servers:
 
-- `crosstabs-headless`: exactly 21 deterministic project-workflow tools for local files, versioned projects, tabulation, approved survey designs, tracker repair, editable report packs, export, and audit history.
+- `crosstabs-headless`: exactly 29 deterministic project-workflow tools for local files, project handoff, approved dictionary edits, guarded transformations, design-aware methods, canonical aggregate widgets, tabulation, reports, and audit history.
 - `crosstabs-statistics`: 39 focused statistical tools plus two local evidence resources.
 
-Together the two servers declare 60 tools. The 21-tool headless catalog is recorded exactly in [`plugins/crosstabs/parity.json`](plugins/crosstabs/parity.json). The package pin is intentionally unpublished, and no package-index, Registry-record, marketplace, directory-review, approval, or availability claim is made for this candidate.
+Together the two servers declare 68 tools. The 29-tool headless catalog is recorded exactly in [`plugins/crosstabs/parity.json`](plugins/crosstabs/parity.json). The package pin is intentionally unpublished, and no package-index, Registry-record, marketplace, directory-review, approval, or availability claim is made for this candidate.
 
 ## Local candidate boundary
 
@@ -21,11 +21,14 @@ Together the two servers declare 60 tools. The 21-tool headless catalog is recor
 
 The exact `uvx` commands are present in [`plugins/crosstabs/.mcp.json`](plugins/crosstabs/.mcp.json) for package parity, but they cannot substantiate this candidate until `crosstabs==1.2.0` is independently published. Do not install or promote this repository as part of local candidate validation.
 
-Publication is also held until the headless server's single-file project store
-has a measured end-to-end persistence and execution envelope or enforces a
-lower project limit. The parser's 50 MiB, 1,000,000-row, and 20,000,000-cell
-admission ceilings are not a promise that projects at those maxima can be
-safely saved, reloaded, and analyzed.
+The source candidate's local JSON store enforces 8 MiB per serialized project
+(including audit and undo) and 32 MiB per combined database (including replay).
+Capacity rejection preserves the original database. A disposable four-project
+fixture with 3,200 rows, 12 columns, and one full undo snapshot per project
+exercised import, save, reload, and analysis at 33,308,653 database bytes (99.3%
+of the file cap). This is a bounded fixture, not a maximum row count or a memory
+or compute guarantee. Parser admission ceilings do not override persistence
+limits. Repeat this verification against the exact artifacts before publication.
 
 ## Local validation
 

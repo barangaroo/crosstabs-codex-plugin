@@ -2,7 +2,7 @@
   "$schema": "./parity.schema.json",
   "schemaVersion": 4,
   "pluginVersion": "0.2.5",
-  "verifiedAt": "2026-09-02T08:01:18Z",
+  "verifiedAt": "2026-09-04T14:51:24Z",
   "verificationScope": "local_candidate",
   "distribution": {
     "package": "crosstabs",
@@ -11,10 +11,11 @@
     "packagePublished": false,
     "transport": "stdio",
     "toolCount": 39,
-    "headlessToolCount": 21,
-    "totalToolCount": 60,
+    "headlessToolCount": 29,
+    "totalToolCount": 68,
     "headlessTools": [
       "create_project",
+      "import_project",
       "import_dataset",
       "profile_dataset",
       "define_row_set",
@@ -22,6 +23,13 @@
       "apply_filter",
       "set_weight",
       "run_table",
+      "render_project_table",
+      "update_variable_metadata",
+      "propose_transformation",
+      "review_transformation",
+      "apply_transformation",
+      "undo_transformation",
+      "run_complex_survey_method",
       "run_tab_book",
       "compare_waves",
       "undo_change",
@@ -63,7 +71,7 @@
       "id": "raw-data-input",
       "label": "Local CSV, TSV, XLSX, SAV, and inline-record import",
       "status": "local-candidate",
-      "boundary": "The headless server imports supported respondent files into local versioned project waves within bounded workload limits."
+      "boundary": "The headless server imports supported respondent files and verified full-data project packages into new local copies within bounded workload limits; package audit history is not imported as trusted local history."
     },
     {
       "id": "research-workflow",
@@ -75,13 +83,13 @@
       "id": "project-model",
       "label": "Saved filters, row sets, weights, survey designs, multibanners, ordering, and export recipes",
       "status": "local-candidate",
-      "boundary": "The local headless bundle uses versioned project revisions, idempotency keys, audit events, and guarded reversible mutations."
+      "boundary": "The local headless bundle uses versioned project revisions, idempotency keys, audit events, approved dictionary edits, and proposal/review/apply/undo transformations."
     },
     {
       "id": "advanced-tabulation",
       "label": "Significance letters and approved complex-survey designs",
       "status": "local-candidate",
-      "boundary": "Tables and tab books include supported significance diagnostics, while complex-sample inference requires an explicit approved design."
+      "boundary": "Tables and tab books include supported significance diagnostics and canonical aggregate widgets; design-aware OLS, logistic, and K-means methods require explicit supported survey designs and retain method-specific limitations."
     },
     {
       "id": "report-refresh",
@@ -99,7 +107,7 @@
       "id": "device-local-boundary",
       "label": "On-device project execution",
       "status": "bounded",
-      "boundary": "The plugin candidate uses local stdio processes and user-controlled storage; its package pin is unpublished and no Registry record is declared."
+      "boundary": "The plugin candidate uses local stdio processes and user-controlled storage. Local JSON persistence enforces 8 MiB per serialized project including audit/undo and 32 MiB per combined database including replay; these are not row-count, memory, or compute guarantees. Its package pin is unpublished and no Registry record is declared."
     }
   ]
 }

@@ -19,6 +19,7 @@ EXPECTED_REGISTRY_NAME = "io.github.crosstabs/crosstabs"
 EXPECTED_STATISTICS_TOOL_COUNT = 39
 EXPECTED_HEADLESS_TOOLS = [
     "create_project",
+    "import_project",
     "import_dataset",
     "profile_dataset",
     "define_row_set",
@@ -26,6 +27,13 @@ EXPECTED_HEADLESS_TOOLS = [
     "apply_filter",
     "set_weight",
     "run_table",
+    "render_project_table",
+    "update_variable_metadata",
+    "propose_transformation",
+    "review_transformation",
+    "apply_transformation",
+    "undo_transformation",
+    "run_complex_survey_method",
     "run_tab_book",
     "compare_waves",
     "undo_change",
@@ -74,7 +82,7 @@ EXPECTED_RELEASE_STATE = {
         "immutableReference": None,
     },
     "promotionRequirements": [
-        "Establish and enforce a measured end-to-end local project persistence and execution envelope before publishing the candidate.",
+        "Reverify the enforced 8 MiB project and 32 MiB database persistence limits and measured import/save/reload/analysis workload against the exact release artifacts before publishing the candidate.",
         "Publish crosstabs==1.2.0 and verify its exact Registry record before making a package or Registry availability claim.",
         "Publish plugin 0.2.5 from an immutable source reference before making a marketplace or directory availability claim.",
         "Repeat strict host validation and both MCP server smoke checks against the exact published artifacts.",
@@ -366,8 +374,8 @@ def verify_local() -> dict[str, Any]:
     for statement in (
         "local plugin candidate `0.2.5`",
         "unpublished package candidate `crosstabs==1.2.0`",
-        "exactly 21 deterministic project-workflow tools",
-        "Together the two servers declare 60 tools.",
+        "exactly 29 deterministic project-workflow tools",
+        "Together the two servers declare 68 tools.",
         "no Registry record in this candidate",
         "Do not install or promote this repository as part of local candidate validation.",
     ):
