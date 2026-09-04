@@ -1,18 +1,18 @@
 {
-  "schemaVersion": 2,
-  "candidate": {
-    "state": "local_committed_unpublished_candidate",
-    "published": false,
-    "packagePublished": false,
-    "registryPublished": false,
+  "schemaVersion": 3,
+  "sourceRelease": {
+    "sourceState": "public_source_release",
+    "packagePublished": true,
+    "registryPublished": true,
     "pluginVersion": "0.2.5",
-    "packageVersion": "1.2.0",
+    "packageVersion": "1.2.1",
     "registryName": "io.github.crosstabs/crosstabs",
-    "registryRecord": null,
-    "immutableReference": null,
-    "verificationScope": "local_candidate"
+    "registryRecord": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.crosstabs%2Fcrosstabs/versions/1.2.1",
+    "tag": "v0.2.5",
+    "sourceReference": "https://github.com/barangaroo/crosstabs-codex-plugin/tree/v0.2.5",
+    "verificationScope": "public_source_release"
   },
-  "currentPublicRelease": {
+  "historicalPublicRelease": {
     "state": "published_marketplace_release",
     "published": true,
     "pluginVersion": "0.2.3",
@@ -20,10 +20,13 @@
     "registryName": "io.github.barangaroo/crosstabs",
     "immutableReference": null
   },
+  "directoryStatus": {
+    "openai": { "submitted": false, "approved": false, "listed": false },
+    "claude": { "submitted": false, "approved": false, "listed": false }
+  },
   "promotionRequirements": [
-    "Reverify the enforced 8 MiB project and 32 MiB database persistence limits and measured import/save/reload/analysis workload against the exact release artifacts before publishing the candidate.",
-    "Publish crosstabs==1.2.0 and verify its exact Registry record before making a package or Registry availability claim.",
-    "Publish plugin 0.2.5 from an immutable source reference before making a marketplace or directory availability claim.",
-    "Repeat strict host validation and both MCP server smoke checks against the exact published artifacts."
+    "Retain an exact Registry record before claiming Registry publication.",
+    "Retain provider submission receipts, approval evidence, and live listings before changing directory states; local stdio is not supported by the OpenAI submission portal.",
+    "Verify the public tag resolves to the recorded source SHA and repeat strict host validation and both MCP smoke checks against exact public artifacts."
   ]
 }

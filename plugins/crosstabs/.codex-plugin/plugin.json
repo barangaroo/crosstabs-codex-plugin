@@ -23,7 +23,7 @@
   "interface": {
     "displayName": "Crosstabs",
     "shortDescription": "Auditable survey crosstabs and statistical tests",
-    "longDescription": "Run categorical and survey research in Codex with two local stdio MCP servers. The unpublished candidate provides 29 deterministic project-workflow tools and 39 focused numerical tools, including project handoff, approved dictionary edits, guarded transformations, design-aware methods, canonical aggregate widgets, reports, and audit history. Respondent files and project state stay on the user's device.",
+    "longDescription": "Run categorical and survey research in Codex with two local stdio MCP servers. The source release provides 29 deterministic project-workflow tools and 39 focused numerical tools, including project handoff, approved dictionary edits, guarded transformations, design-aware methods, canonical aggregate widgets, reports, and audit history. Respondent files and project state stay on the user's device.",
     "developerName": "Crosstabs Team",
     "category": "Data & Analytics",
     "capabilities": [

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fail-closed validation for the unpublished local Crosstabs plugin candidate."""
+"""Fail-closed source-release validation, independent of directory listing."""
 
 from __future__ import annotations
 
@@ -14,8 +14,11 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 PLUGIN_ROOT = ROOT / "plugins" / "crosstabs"
 EXPECTED_PLUGIN_VERSION = "0.2.5"
-EXPECTED_PACKAGE_VERSION = "1.2.0"
+EXPECTED_PACKAGE_VERSION = "1.2.1"
+EXPECTED_PACKAGE_PUBLISHED = True
 EXPECTED_REGISTRY_NAME = "io.github.crosstabs/crosstabs"
+REGISTRY_RECORD_URL = "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.crosstabs%2Fcrosstabs/versions/1.2.1"
+EXPECTED_REGISTRY_RECORD: str | None = REGISTRY_RECORD_URL
 EXPECTED_STATISTICS_TOOL_COUNT = 39
 EXPECTED_HEADLESS_TOOLS = [
     "create_project",
@@ -60,20 +63,20 @@ EXPECTED_SURFACE_IDS = [
     "device-local-boundary",
 ]
 EXPECTED_RELEASE_STATE = {
-    "schemaVersion": 2,
-    "candidate": {
-        "state": "local_committed_unpublished_candidate",
-        "published": False,
-        "packagePublished": False,
-        "registryPublished": False,
+    "schemaVersion": 3,
+    "sourceRelease": {
+        "sourceState": "public_source_release",
+        "packagePublished": EXPECTED_PACKAGE_PUBLISHED,
+        "registryPublished": EXPECTED_REGISTRY_RECORD is not None,
         "pluginVersion": EXPECTED_PLUGIN_VERSION,
         "packageVersion": EXPECTED_PACKAGE_VERSION,
         "registryName": EXPECTED_REGISTRY_NAME,
-        "registryRecord": None,
-        "immutableReference": None,
-        "verificationScope": "local_candidate",
+        "registryRecord": EXPECTED_REGISTRY_RECORD,
+        "tag": "v0.2.5",
+        "sourceReference": "https://github.com/barangaroo/crosstabs-codex-plugin/tree/v0.2.5",
+        "verificationScope": "public_source_release",
     },
-    "currentPublicRelease": {
+    "historicalPublicRelease": {
         "state": "published_marketplace_release",
         "published": True,
         "pluginVersion": "0.2.3",
@@ -81,11 +84,14 @@ EXPECTED_RELEASE_STATE = {
         "registryName": "io.github.barangaroo/crosstabs",
         "immutableReference": None,
     },
+    "directoryStatus": {
+        "openai": {"submitted": False, "approved": False, "listed": False},
+        "claude": {"submitted": False, "approved": False, "listed": False},
+    },
     "promotionRequirements": [
-        "Reverify the enforced 8 MiB project and 32 MiB database persistence limits and measured import/save/reload/analysis workload against the exact release artifacts before publishing the candidate.",
-        "Publish crosstabs==1.2.0 and verify its exact Registry record before making a package or Registry availability claim.",
-        "Publish plugin 0.2.5 from an immutable source reference before making a marketplace or directory availability claim.",
-        "Repeat strict host validation and both MCP server smoke checks against the exact published artifacts.",
+        "Retain an exact Registry record before claiming Registry publication.",
+        "Retain provider submission receipts, approval evidence, and live listings before changing directory states; local stdio is not supported by the OpenAI submission portal.",
+        "Verify the public tag resolves to the recorded source SHA and repeat strict host validation and both MCP smoke checks against exact public artifacts.",
     ],
 }
 
@@ -105,6 +111,19 @@ def require_exact_keys(value: dict[str, Any], expected: set[str], label: str) ->
         raise ValueError(f"{label} keys differ; missing={missing}, extra={extra}")
 
 
+def verify_registry_publication(published: bool, record: str | None) -> None:
+    if (published is True and record == REGISTRY_RECORD_URL) or (published is False and record is None):
+        return
+    raise ValueError("Registry publication must bind the exact versioned record, independently of directory status")
+
+
+def verify_release_state(state: dict[str, Any]) -> None:
+    if state != EXPECTED_RELEASE_STATE:
+        raise ValueError("release-state differs from the public source and separate directory contract")
+    release = state["sourceRelease"]
+    verify_registry_publication(release["registryPublished"], release["registryRecord"])
+
+
 def verify_local() -> dict[str, Any]:
     marketplace = read_json(ROOT / ".agents" / "plugins" / "marketplace.json")
     manifest = read_json(PLUGIN_ROOT / ".codex-plugin" / "plugin.json")
@@ -114,8 +133,7 @@ def verify_local() -> dict[str, Any]:
     parity_schema = read_json(PLUGIN_ROOT / "parity.schema.json")
     release_state = read_json(PLUGIN_ROOT / "release-state.json")
 
-    if release_state != EXPECTED_RELEASE_STATE:
-        raise ValueError("release-state contract differs from the local unpublished boundary")
+    verify_release_state(release_state)
 
     if marketplace.get("name") != "crosstabs":
         raise ValueError("repository marketplace name must be crosstabs")
@@ -207,16 +225,16 @@ def verify_local() -> dict[str, Any]:
         raise ValueError("parity contract schema version differs")
     if parity.get("pluginVersion") != EXPECTED_PLUGIN_VERSION:
         raise ValueError("parity plugin version differs")
-    if parity.get("verificationScope") != "local_candidate":
-        raise ValueError("parity verification scope must remain local")
+    if parity.get("verificationScope") != "public_source_release":
+        raise ValueError("parity verification scope must describe the public source release")
     if distribution.get("package") != "crosstabs":
         raise ValueError("parity package name differs")
     if distribution.get("version") != EXPECTED_PACKAGE_VERSION:
         raise ValueError("parity package version differs")
     if distribution.get("requirement") != requirement:
         raise ValueError("parity package requirement is not exact")
-    if distribution.get("packagePublished") is not False:
-        raise ValueError("candidate package must remain explicitly unpublished")
+    if distribution.get("packagePublished") is not EXPECTED_PACKAGE_PUBLISHED:
+        raise ValueError("package publication state differs from verified release evidence")
     if distribution.get("transport") != "stdio":
         raise ValueError("plugin transport must be stdio")
     if distribution.get("toolCount") != EXPECTED_STATISTICS_TOOL_COUNT:
@@ -239,8 +257,8 @@ def verify_local() -> dict[str, Any]:
         raise ValueError("statistics evidence resources differ")
     if distribution.get("registryName") != EXPECTED_REGISTRY_NAME:
         raise ValueError("candidate Registry identity differs")
-    if distribution.get("registryRecord") is not None:
-        raise ValueError("unpublished package cannot claim a Registry record")
+    if distribution.get("registryRecord") != EXPECTED_REGISTRY_RECORD:
+        raise ValueError("Registry record differs from verified release evidence")
 
     datetime.fromisoformat(parity["verifiedAt"].replace("Z", "+00:00"))
     schema_properties = parity_schema.get("properties", {})
@@ -269,12 +287,12 @@ def verify_local() -> dict[str, Any]:
         raise ValueError("parity schema does not pin its contract version")
     if schema_properties.get("pluginVersion", {}).get("const") != EXPECTED_PLUGIN_VERSION:
         raise ValueError("parity schema does not pin the plugin version")
-    if schema_properties.get("verificationScope", {}).get("const") != "local_candidate":
-        raise ValueError("parity schema does not pin local verification scope")
+    if schema_properties.get("verificationScope", {}).get("const") != "public_source_release":
+        raise ValueError("parity schema does not pin source-release verification scope")
     if schema_distribution.get("version", {}).get("const") != EXPECTED_PACKAGE_VERSION:
         raise ValueError("parity schema does not pin the package version")
-    if schema_distribution.get("packagePublished", {}).get("const") is not False:
-        raise ValueError("parity schema does not pin unpublished package state")
+    if schema_distribution.get("packagePublished", {}).get("const") is not EXPECTED_PACKAGE_PUBLISHED:
+        raise ValueError("parity schema does not pin verified package state")
     if schema_distribution.get("toolCount", {}).get("const") != EXPECTED_STATISTICS_TOOL_COUNT:
         raise ValueError("parity schema does not pin the statistics tool count")
     if schema_distribution.get("headlessToolCount", {}).get("const") != len(EXPECTED_HEADLESS_TOOLS):
@@ -285,15 +303,15 @@ def verify_local() -> dict[str, Any]:
         raise ValueError("parity schema does not pin the exact headless catalog")
     if schema_distribution.get("registryName", {}).get("const") != EXPECTED_REGISTRY_NAME:
         raise ValueError("parity schema does not pin the Registry identity")
-    if schema_distribution.get("registryRecord", {}).get("type") != "null":
-        raise ValueError("parity schema does not prohibit a Registry-record claim")
+    if schema_distribution.get("registryRecord") != {"const": EXPECTED_REGISTRY_RECORD}:
+        raise ValueError("parity schema does not pin the verified Registry state")
     schema_surface = schema_properties.get("surfaces", {}).get("items", {})
     if set(schema_surface.get("required", [])) != {"id", "label", "status", "boundary"}:
         raise ValueError("parity surface schema required fields differ")
     if schema_surface.get("additionalProperties") is not False:
         raise ValueError("parity surface schema must reject additional properties")
     if set(schema_surface.get("properties", {}).get("status", {}).get("enum", [])) != {
-        "local-candidate",
+        "public-source",
         "bounded",
     }:
         raise ValueError("parity surface schema statuses differ")
@@ -307,7 +325,7 @@ def verify_local() -> dict[str, Any]:
         if not isinstance(surface, dict):
             raise ValueError("every parity surface must be an object")
         require_exact_keys(surface, {"id", "label", "status", "boundary"}, "parity surface")
-        if surface.get("status") not in {"local-candidate", "bounded"}:
+        if surface.get("status") not in {"public-source", "bounded"}:
             raise ValueError(f"invalid local parity status for {surface.get('id')}")
         if not all(
             isinstance(surface.get(field), str) and surface[field]
@@ -372,23 +390,23 @@ def verify_local() -> dict[str, Any]:
 
     readme = (ROOT / "README.md").read_text()
     for statement in (
-        "local plugin candidate `0.2.5`",
-        "unpublished package candidate `crosstabs==1.2.0`",
+        "source release `0.2.5`",
+        "crosstabs==1.2.1",
         "exactly 29 deterministic project-workflow tools",
         "Together the two servers declare 68 tools.",
-        "no Registry record in this candidate",
-        "Do not install or promote this repository as part of local candidate validation.",
+        "does not imply directory submission, approval, or listing",
+        "--ref v0.2.5",
     ):
         if statement not in readme:
-            raise ValueError("README does not preserve the local unpublished boundary")
+            raise ValueError("README does not preserve the source release and directory boundary")
 
     return {
-        "candidateState": release_state["candidate"]["state"],
+        "sourceState": release_state["sourceRelease"]["sourceState"],
         "pluginVersion": manifest["version"],
         "packageVersion": EXPECTED_PACKAGE_VERSION,
-        "packagePublished": False,
+        "packagePublished": EXPECTED_PACKAGE_PUBLISHED,
         "registryName": EXPECTED_REGISTRY_NAME,
-        "registryRecord": None,
+        "registryRecord": EXPECTED_REGISTRY_RECORD,
         "statisticsToolCount": EXPECTED_STATISTICS_TOOL_COUNT,
         "headlessToolCount": len(EXPECTED_HEADLESS_TOOLS),
         "totalToolCount": expected_total,
@@ -398,7 +416,7 @@ def verify_local() -> dict[str, Any]:
 
 def main() -> None:
     argparse.ArgumentParser(
-        description="Validate the local unpublished plugin candidate."
+        description="Validate the public source release contract without implying directory approval."
     ).parse_args()
     result = {"local": verify_local(), "status": "passed"}
     print(json.dumps(result, sort_keys=True))

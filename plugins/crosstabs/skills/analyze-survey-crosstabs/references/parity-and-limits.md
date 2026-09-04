@@ -1,17 +1,17 @@
 # Plugin parity and limits
 
-## Current local candidate surface
+## Public source release surface
 
-- Plugin candidate: `0.2.5`, unpublished.
-- Exact package candidate: `crosstabs==1.2.0`, unpublished.
+- Plugin source release: `0.2.5`, GitHub tag `v0.2.5`.
+- Exact package pin: `crosstabs==1.2.1`; publication evidence is recorded in `../../../release-state.json` separately from the source tag.
 - Runtime: Python 3.10+ and Node.js 22+ for the bundled headless server.
 - Transport: local MCP over stdio.
 - Numerical server: 39 focused statistical tools and two evidence resources.
 - Project server: exactly 29 deterministic tools, from project handoff and data import through approved dictionary edits, guarded transformations, design-aware methods, canonical widgets, reports, export, and audit history.
 - Total declared tool count across both servers: 68.
-- Package Registry identity: `io.github.crosstabs/crosstabs`; no `1.2.0` Registry record is claimed.
+- Package Registry identity: `io.github.crosstabs/crosstabs`; the [exact 1.2.1 record](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.crosstabs%2Fcrosstabs/versions/1.2.1) was verified active. Registry publication is separate from provider-directory listing.
 
-The 29-tool project catalog and both MCP commands are machine-readable in `../../../parity.json` and `../../../.mcp.json`. Candidate validation uses the current locally built headless bundle so it does not resolve the unpublished package pin.
+The 29-tool project catalog and both MCP commands are machine-readable in `../../../parity.json` and `../../../.mcp.json`. Release validation runs both exact packaged MCP commands. A local-bundle-only check does not prove package publication. Neither check proves directory submission, approval, or listing.
 
 The local JSON store enforces 8 MiB per serialized project including audit/undo
 and 32 MiB per combined database including replay. Writes exceeding either

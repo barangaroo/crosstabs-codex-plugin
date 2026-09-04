@@ -8,15 +8,41 @@ import asyncio
 import json
 import os
 import tempfile
+from urllib.request import urlopen
 from pathlib import Path
 from typing import Any
 
 from mcp import ClientSession, StdioServerParameters, types
 from mcp.client.stdio import stdio_client
+from packaging.requirements import Requirement
+from packaging.version import Version
 
 
 ROOT = Path(__file__).resolve().parents[1]
 PLUGIN_ROOT = ROOT / "plugins" / "crosstabs"
+
+
+def validate_package_metadata(metadata: dict[str, Any], version: str) -> None:
+    info = metadata["info"]
+    if info["version"] != version:
+        raise SystemExit("PyPI package version does not match the exact plugin pin")
+    requirements = [Requirement(value) for value in info.get("requires_dist", [])]
+    mcp_requirements = [requirement for requirement in requirements if requirement.name == "mcp"]
+    if len(mcp_requirements) != 1:
+        raise SystemExit("Package must declare one explicit compatible MCP 1.x dependency")
+    requirement = mcp_requirements[0]
+    has_major_cap = any(spec.operator == "<" and Version(spec.version) == Version("2")
+                        for spec in requirement.specifier)
+    if requirement.url or requirement.marker or not has_major_cap or "1.29.0" not in requirement.specifier:
+        raise SystemExit("Package must cap the compatible MCP 1.x dependency below 2 and admit 1.29.0")
+
+
+def verify_published_package(version: str) -> None:
+    with urlopen(f"https://pypi.org/pypi/crosstabs/{version}/json", timeout=20) as response:
+        payload = response.read(2 * 1024 * 1024 + 1)
+    if len(payload) > 2 * 1024 * 1024:
+        raise SystemExit("PyPI package metadata exceeds the verification bound")
+    validate_package_metadata(json.loads(payload), version)
 
 
 def parse_args() -> argparse.Namespace:
@@ -125,6 +151,9 @@ async def smoke(args: argparse.Namespace) -> dict[str, object]:
     mcp_config = json.loads((PLUGIN_ROOT / ".mcp.json").read_text())
     parity = json.loads((PLUGIN_ROOT / "parity.json").read_text())
     expected = parity["distribution"]
+
+    if args.headless_bundle is None:
+        verify_published_package(expected["version"])
 
     with tempfile.TemporaryDirectory(prefix="crosstabs-plugin-smoke-") as state_dir:
         environment = {**os.environ, "CROSSTABS_DATA_DIR": state_dir}

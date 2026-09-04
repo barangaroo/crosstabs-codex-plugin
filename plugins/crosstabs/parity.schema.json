@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://www.crosstabs.com/schemas/codex-plugin-parity.schema.json",
-  "title": "Crosstabs local plugin candidate parity contract",
+  "title": "Crosstabs public source plugin parity contract",
   "type": "object",
   "required": [
     "$schema",
@@ -17,7 +17,7 @@
     "schemaVersion": { "const": 4 },
     "pluginVersion": { "const": "0.2.5" },
     "verifiedAt": { "type": "string", "format": "date-time" },
-    "verificationScope": { "const": "local_candidate" },
+    "verificationScope": { "const": "public_source_release" },
     "distribution": {
       "type": "object",
       "required": [
@@ -37,9 +37,9 @@
       ],
       "properties": {
         "package": { "const": "crosstabs" },
-        "version": { "const": "1.2.0" },
-        "requirement": { "const": "crosstabs==1.2.0" },
-        "packagePublished": { "const": false },
+        "version": { "const": "1.2.1" },
+        "requirement": { "const": "crosstabs==1.2.1" },
+        "packagePublished": { "const": true },
         "transport": { "const": "stdio" },
         "toolCount": { "const": 39 },
         "headlessToolCount": { "const": 29 },
@@ -87,7 +87,7 @@
           ]
         },
         "registryName": { "const": "io.github.crosstabs/crosstabs" },
-        "registryRecord": { "type": "null" }
+        "registryRecord": { "const": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.crosstabs%2Fcrosstabs/versions/1.2.1" }
       },
       "additionalProperties": false
     },
@@ -101,7 +101,7 @@
           "id": { "type": "string", "minLength": 1 },
           "label": { "type": "string", "minLength": 1 },
           "status": {
-            "enum": ["local-candidate", "bounded"]
+            "enum": ["public-source", "bounded"]
           },
           "boundary": { "type": "string", "minLength": 1 }
         },

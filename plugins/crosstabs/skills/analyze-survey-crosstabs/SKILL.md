@@ -31,7 +31,7 @@ Use `crosstabs-headless` for end-to-end local research projects and `crosstabs-s
 
 ## Product parity boundary
 
-The unpublished headless candidate exposes exactly the 29 deterministic project tools recorded in `../../parity.json`. This is workflow parity, not visual-interface parity. Do not invent tools for arbitrary row editing, visual interaction state, or other operations absent from that exact catalog. Local JSON persistence is capped at 8 MiB per project including audit/undo and 32 MiB per database including replay; a workload-limit rejection must not be reported as a successful save.
+The headless source release exposes exactly the 29 deterministic project tools recorded in `../../parity.json`. Source publication does not establish directory approval or listing. This is workflow parity, not visual-interface parity. Do not invent tools for arbitrary row editing, visual interaction state, or other operations absent from that exact catalog. Local JSON persistence is capped at 8 MiB per project including audit/undo and 32 MiB per database including replay; a workload-limit rejection must not be reported as a successful save.
 
 Read [parity-and-limits.md](references/parity-and-limits.md) when the request asks whether the plugin matches another Crosstabs surface, needs an unsupported workflow, or depends on scale limits.
 
