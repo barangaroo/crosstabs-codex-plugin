@@ -11,7 +11,7 @@ import tempfile
 from pathlib import Path
 from typing import Any
 
-from mcp import ClientSession, StdioServerParameters
+from mcp import ClientSession, StdioServerParameters, types
 from mcp.client.stdio import stdio_client
 
 
@@ -41,7 +41,8 @@ async def inspect_server(
     server: dict[str, Any],
     *,
     environment: dict[str, str] | None = None,
-) -> tuple[object, object, object, object]:
+) -> tuple[types.InitializeResult, types.ListToolsResult, types.ListResourcesResult,
+           types.ListResourceTemplatesResult]:
     parameters = StdioServerParameters(
         command=server["command"],
         args=server["args"],
@@ -57,9 +58,9 @@ async def inspect_server(
 
 
 def validate_headless(
-    initialized: object,
-    tools: object,
-    templates: object,
+    initialized: types.InitializeResult,
+    tools: types.ListToolsResult,
+    templates: types.ListResourceTemplatesResult,
     expected: dict[str, Any],
 ) -> dict[str, Any]:
     actual_tools = [tool.name for tool in tools.tools]
@@ -75,7 +76,7 @@ def validate_headless(
         )
 
     actual_templates = sorted(
-        str(template.uri_template) for template in templates.resource_templates
+        str(template.uriTemplate) for template in templates.resourceTemplates
     )
     expected_templates = sorted(expected["headlessResourceTemplates"])
     if actual_templates != expected_templates:
@@ -88,8 +89,9 @@ def validate_headless(
         (tool for tool in tools.tools if tool.name == "define_survey_design"),
         None,
     )
-    design_schema = getattr(design_tool, "input_schema", None) if design_tool else None
-    required = design_schema.get("required", []) if isinstance(design_schema, dict) else []
+    if design_tool is None:
+        raise SystemExit("define_survey_design tool is missing")
+    required = design_tool.inputSchema.get("required", [])
     expected_required = {
         "projectId",
         "expectedRevision",
@@ -101,7 +103,7 @@ def validate_headless(
     if not isinstance(required, list) or not expected_required.issubset(required):
         raise SystemExit("define_survey_design input schema is incomplete")
 
-    server_info = initialized.server_info
+    server_info = initialized.serverInfo
     if server_info.name != "crosstabs-headless":
         raise SystemExit(f"unexpected headless server name: {server_info.name}")
     if server_info.version != expected["version"]:
@@ -178,8 +180,8 @@ async def smoke(args: argparse.Namespace) -> dict[str, object]:
         "mode": "packaged_candidate",
         "packageVersion": expected["version"],
         "packagePublished": expected["packagePublished"],
-        "statisticsServerName": initialized.server_info.name,
-        "statisticsServerVersion": initialized.server_info.version,
+        "statisticsServerName": initialized.serverInfo.name,
+        "statisticsServerVersion": initialized.serverInfo.version,
         "statisticsToolCount": len(tools.tools),
         "resourceUris": actual_resource_uris,
         **headless,
