@@ -1,19 +1,23 @@
 {
   "$schema": "./parity.schema.json",
   "schemaVersion": 4,
-  "pluginVersion": "0.2.6",
-  "verifiedAt": "2026-09-04T15:45:06Z",
+  "pluginVersion": "0.3.0",
+  "verifiedAt": "2026-09-05T02:37:14Z",
   "verificationScope": "public_source_release",
   "distribution": {
     "package": "crosstabs",
-    "version": "1.2.2",
-    "requirement": "crosstabs==1.2.2",
+    "version": "1.3.0",
+    "requirement": "crosstabs==1.3.0",
     "packagePublished": true,
     "transport": "stdio",
-    "toolCount": 39,
-    "headlessToolCount": 29,
-    "totalToolCount": 68,
+    "toolCount": 40,
+    "headlessToolCount": 33,
+    "totalToolCount": 73,
     "headlessTools": [
+      "get_runtime_status",
+      "create_analysis_plan",
+      "validate_analysis_plan",
+      "run_analysis_plan",
       "create_project",
       "import_project",
       "import_dataset",
@@ -52,14 +56,14 @@
       "crosstabs://evidence/limitations"
     ],
     "registryName": "io.github.crosstabs/crosstabs",
-    "registryRecord": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.crosstabs%2Fcrosstabs/versions/1.2.2"
+    "registryRecord": null
   },
   "surfaces": [
     {
       "id": "statistical-tools",
       "label": "Contingency-table tests, measures, diagnostics, and chart data",
       "status": "public-source",
-      "boundary": "The exact package pin declares 39 focused numerical tools through the local statistics server."
+      "boundary": "The exact package pin declares 40 registrations: 39 analytical tools plus get_runtime_status. Runtime status is operational, not a statistical method."
     },
     {
       "id": "evidence-resources",
@@ -83,7 +87,7 @@
       "id": "project-model",
       "label": "Saved filters, row sets, weights, survey designs, multibanners, ordering, and export recipes",
       "status": "public-source",
-      "boundary": "The local headless bundle uses versioned project revisions, idempotency keys, audit events, approved dictionary edits, and proposal/review/apply/undo transformations."
+      "boundary": "The local headless bundle uses versioned project revisions, idempotency keys, audit events, approved dictionary edits, and proposal/review/apply/undo transformations. Portable analysis plans record readable settings and bind data, definitions, and revision; validation and execution are read-only, bounded, and reject stale plans."
     },
     {
       "id": "advanced-tabulation",

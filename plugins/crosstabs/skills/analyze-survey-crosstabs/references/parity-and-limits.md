@@ -2,16 +2,16 @@
 
 ## Public source release surface
 
-- Plugin source release: `0.2.6`, GitHub tag `v0.2.6`.
-- Exact package pin: `crosstabs==1.2.2`; publication evidence is recorded in `../../../release-state.json` separately from the source tag.
+- Plugin source release: `0.3.0`, GitHub tag `v0.3.0`; the exact public 1.3.0 package passed fresh checks of both servers and their runtime status. Registry publication is a separate gate.
+- Exact package pin: `crosstabs==1.3.0`; publication evidence is recorded in `../../../release-state.json` separately from the source tag.
 - Runtime: Python 3.10+ and Node.js 22+ for the bundled headless server.
 - Transport: local MCP over stdio.
-- Numerical server: 39 focused statistical tools and two evidence resources.
-- Project server: exactly 29 deterministic tools, from project handoff and data import through approved dictionary edits, guarded transformations, design-aware methods, canonical widgets, reports, export, and audit history.
-- Total declared tool count across both servers: 68.
-- Package Registry identity: `io.github.crosstabs/crosstabs`; the [exact 1.2.2 record](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.crosstabs%2Fcrosstabs/versions/1.2.2) was verified active. Registry publication is separate from provider-directory listing.
+- Numerical server: 40 registrations: 39 analytical tools plus runtime status, and two evidence resources.
+- Project server: exactly 33 deterministic tools, from project handoff and data import through approved dictionary edits, guarded transformations, design-aware methods, canonical widgets, reports, export, and audit history.
+- Total registrations across both servers: 73 (72 distinct names).
+- Package Registry identity: `io.github.crosstabs/crosstabs`; no 1.3.0 Registry record is claimed. Historical plugin 0.2.6/package 1.2.2 evidence is retained separately in the release-state file.
 
-The 29-tool project catalog and both MCP commands are machine-readable in `../../../parity.json` and `../../../.mcp.json`. Release validation runs both exact packaged MCP commands. A local-bundle-only check does not prove package publication. Neither check proves directory submission, approval, or listing.
+The 33-tool project catalog and both MCP commands are machine-readable in `../../../parity.json` and `../../../.mcp.json`. Release validation runs both exact packaged MCP commands. A local-bundle-only check does not prove package publication. Neither check proves directory submission, approval, or listing.
 
 The local JSON store enforces 8 MiB per serialized project including audit/undo
 and 32 MiB per combined database including replay. Writes exceeding either
@@ -22,7 +22,7 @@ database bytes and 7,962,576 bytes per project. These measurements are fixture
 evidence, not a row-count, memory, or compute guarantee. Exact release artifacts
 must repeat the capacity verification before publication.
 
-## Project workflows exposed by plugin 0.2.6
+## Project workflows exposed by plugin 0.3.0
 
 - Local CSV, TSV, XLSX, SAV, and inline-record import with profiling and versioned waves.
 - Verified full-data project-package import into a new local copy, without trusting source audit history or overwriting an existing destination.
@@ -34,13 +34,16 @@ must repeat the capacity verification before publication.
 - Editable PPTX/DOCX generation and non-overwriting refresh for supported generated regions.
 - Project inspection, paginated audit history, definition-only export by default, and explicitly authorized full-data export.
 
+- Runtime identity and expected-package comparison on both servers; no plugin-version inference.
+- Portable ordinary-table analysis plans with readable settings, strict revision/data/definition binding, preflight validation, bounded execution and aggregate review findings. Plans do not mutate project state or save themselves; complex-survey plans remain unsupported.
+
 ## Operations outside the plugin catalog
 
 - Visual navigation, direct table editing, and interface interaction state.
 - Unlisted project mutations or filesystem access outside the configured local roots.
 - Any operation that transfers respondent rows or project state out of the local process.
 
-Never imply that an operation absent from the exact 29-tool catalog ran.
+Never imply that an operation absent from the exact 33-tool catalog ran.
 
 ## Statistical boundaries
 

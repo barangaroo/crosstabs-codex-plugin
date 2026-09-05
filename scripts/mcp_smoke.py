@@ -66,9 +66,10 @@ def parse_args() -> argparse.Namespace:
 async def inspect_server(
     server: dict[str, Any],
     *,
+    expected_version: str,
     environment: dict[str, str] | None = None,
 ) -> tuple[types.InitializeResult, types.ListToolsResult, types.ListResourcesResult,
-           types.ListResourceTemplatesResult]:
+           types.ListResourceTemplatesResult, dict[str, Any]]:
     parameters = StdioServerParameters(
         command=server["command"],
         args=server["args"],
@@ -80,7 +81,26 @@ async def inspect_server(
             tools = await session.list_tools()
             resources = await session.list_resources()
             templates = await session.list_resource_templates()
-    return initialized, tools, resources, templates
+            runtime_result = await session.call_tool("get_runtime_status", {"expectedPackageVersion": expected_version})
+            runtime = validate_runtime_status(runtime_result, tools, expected_version)
+    return initialized, tools, resources, templates, runtime
+
+
+def validate_runtime_status(result: types.CallToolResult, tools: types.ListToolsResult,
+                            expected_version: str) -> dict[str, Any]:
+    if result.isError:
+        raise SystemExit("runtime status tool returned an error")
+    status = getattr(result, "structuredContent", None)
+    if status is None:
+        blocks = [item.text for item in result.content if isinstance(item, types.TextContent)]
+        if len(blocks) != 1:
+            raise SystemExit("runtime status must return one structured result")
+        status = json.loads(blocks[0])
+    if not isinstance(status, dict) or status.get("packageVersion") != expected_version or status.get("versionMatch") is not True:
+        raise SystemExit("runtime package does not match the exact plugin pin")
+    if status.get("toolNames") != sorted(tool.name for tool in tools.tools):
+        raise SystemExit("runtime inventory differs from tools/list")
+    return status
 
 
 def validate_headless(
@@ -162,8 +182,9 @@ async def smoke(args: argparse.Namespace) -> dict[str, object]:
             bundle = args.headless_bundle.expanduser().resolve()
             if not bundle.is_file() or bundle.suffix != ".mjs":
                 raise SystemExit("--headless-bundle must name an existing .mjs file")
-            initialized, tools, _, templates = await inspect_server(
+            initialized, tools, _, templates, runtime = await inspect_server(
                 {"command": args.node, "args": [str(bundle)]},
+                expected_version=expected["version"],
                 environment=environment,
             )
             headless = validate_headless(initialized, tools, templates, expected)
@@ -173,16 +194,19 @@ async def smoke(args: argparse.Namespace) -> dict[str, object]:
                 "packageVersion": expected["version"],
                 "packagePublished": expected["packagePublished"],
                 **headless,
+                "headlessRuntime": runtime,
                 "statisticsServer": "not_run_unpublished_package",
                 "status": "passed",
             }
 
-        initialized, tools, resources, _ = await inspect_server(
+        initialized, tools, resources, _, statistics_runtime = await inspect_server(
             mcp_config["mcpServers"]["crosstabs-statistics"],
+            expected_version=expected["version"],
             environment=environment,
         )
-        headless_initialized, headless_tools, _, headless_templates = await inspect_server(
+        headless_initialized, headless_tools, _, headless_templates, headless_runtime = await inspect_server(
             mcp_config["mcpServers"]["crosstabs-headless"],
+            expected_version=expected["version"],
             environment=environment,
         )
 
@@ -212,6 +236,8 @@ async def smoke(args: argparse.Namespace) -> dict[str, object]:
         "statisticsServerName": initialized.serverInfo.name,
         "statisticsServerVersion": initialized.serverInfo.version,
         "statisticsToolCount": len(tools.tools),
+        "statisticsRuntime": statistics_runtime,
+        "headlessRuntime": headless_runtime,
         "resourceUris": actual_resource_uris,
         **headless,
         "status": "passed",

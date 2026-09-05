@@ -13,14 +13,18 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 PLUGIN_ROOT = ROOT / "plugins" / "crosstabs"
-EXPECTED_PLUGIN_VERSION = "0.2.6"
-EXPECTED_PACKAGE_VERSION = "1.2.2"
+EXPECTED_PLUGIN_VERSION = "0.3.0"
+EXPECTED_PACKAGE_VERSION = "1.3.0"
 EXPECTED_PACKAGE_PUBLISHED = True
 EXPECTED_REGISTRY_NAME = "io.github.crosstabs/crosstabs"
-REGISTRY_RECORD_URL = "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.crosstabs%2Fcrosstabs/versions/1.2.2"
-EXPECTED_REGISTRY_RECORD: str | None = REGISTRY_RECORD_URL
-EXPECTED_STATISTICS_TOOL_COUNT = 39
+REGISTRY_RECORD_URL = "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.crosstabs%2Fcrosstabs/versions/1.3.0"
+EXPECTED_REGISTRY_RECORD: str | None = None
+EXPECTED_STATISTICS_TOOL_COUNT = 40
 EXPECTED_HEADLESS_TOOLS = [
+    "get_runtime_status",
+    "create_analysis_plan",
+    "validate_analysis_plan",
+    "run_analysis_plan",
     "create_project",
     "import_project",
     "import_dataset",
@@ -72,9 +76,21 @@ EXPECTED_RELEASE_STATE = {
         "packageVersion": EXPECTED_PACKAGE_VERSION,
         "registryName": EXPECTED_REGISTRY_NAME,
         "registryRecord": EXPECTED_REGISTRY_RECORD,
+        "tag": "v0.3.0",
+        "sourceReference": "https://github.com/barangaroo/crosstabs-codex-plugin/tree/v0.3.0",
+        "verificationScope": "public_source_release",
+    },
+    "previousSourceRelease": {
+        "sourceState": "public_source_release",
+        "packagePublished": True,
+        "registryPublished": True,
+        "pluginVersion": "0.2.6",
+        "packageVersion": "1.2.2",
+        "registryName": "io.github.crosstabs/crosstabs",
+        "registryRecord": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.crosstabs%2Fcrosstabs/versions/1.2.2",
         "tag": "v0.2.6",
         "sourceReference": "https://github.com/barangaroo/crosstabs-codex-plugin/tree/v0.2.6",
-        "verificationScope": "public_source_release",
+        "verificationScope": "public_source_release"
     },
     "historicalPublicRelease": {
         "state": "published_marketplace_release",
@@ -226,7 +242,7 @@ def verify_local() -> dict[str, Any]:
     if parity.get("pluginVersion") != EXPECTED_PLUGIN_VERSION:
         raise ValueError("parity plugin version differs")
     if parity.get("verificationScope") != "public_source_release":
-        raise ValueError("parity verification scope must describe the public source release")
+        raise ValueError("parity verification scope must describe the local candidate")
     if distribution.get("package") != "crosstabs":
         raise ValueError("parity package name differs")
     if distribution.get("version") != EXPECTED_PACKAGE_VERSION:
@@ -288,7 +304,7 @@ def verify_local() -> dict[str, Any]:
     if schema_properties.get("pluginVersion", {}).get("const") != EXPECTED_PLUGIN_VERSION:
         raise ValueError("parity schema does not pin the plugin version")
     if schema_properties.get("verificationScope", {}).get("const") != "public_source_release":
-        raise ValueError("parity schema does not pin source-release verification scope")
+        raise ValueError("parity schema does not pin candidate verification scope")
     if schema_distribution.get("version", {}).get("const") != EXPECTED_PACKAGE_VERSION:
         raise ValueError("parity schema does not pin the package version")
     if schema_distribution.get("packagePublished", {}).get("const") is not EXPECTED_PACKAGE_PUBLISHED:
@@ -390,12 +406,12 @@ def verify_local() -> dict[str, Any]:
 
     readme = (ROOT / "README.md").read_text()
     for statement in (
-        "source release `0.2.6`",
-        "crosstabs==1.2.2",
-        "exactly 29 deterministic project-workflow tools",
-        "Together the two servers declare 68 tools.",
+        "source release `0.3.0`",
+        "crosstabs==1.3.0",
+        "exactly 33 deterministic project-workflow tools",
+        "Together the two servers declare 73 tool registrations.",
         "does not imply directory submission, approval, or listing",
-        "--ref v0.2.6",
+        "--ref v0.3.0",
     ):
         if statement not in readme:
             raise ValueError("README does not preserve the source release and directory boundary")

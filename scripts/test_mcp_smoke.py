@@ -15,7 +15,7 @@ class HeadlessSmokeModelTests(unittest.TestCase):
         self.initialized = types.InitializeResult(
             protocolVersion=types.LATEST_PROTOCOL_VERSION,
             capabilities=types.ServerCapabilities(),
-            serverInfo=types.Implementation(name="crosstabs-headless", version="1.2.2"),
+            serverInfo=types.Implementation(name="crosstabs-headless", version="1.3.0"),
         )
         self.tools = types.ListToolsResult(tools=[
             types.Tool(name=name, inputSchema={
@@ -34,8 +34,8 @@ class HeadlessSmokeModelTests(unittest.TestCase):
 
     def test_accepts_real_sdk_result_models(self):
         result = self.validate()
-        self.assertEqual(result["headlessToolCount"], 29)
-        self.assertEqual(result["headlessServerVersion"], "1.2.2")
+        self.assertEqual(result["headlessToolCount"], 33)
+        self.assertEqual(result["headlessServerVersion"], "1.3.0")
         self.assertEqual(result["headlessResourceTemplates"], self.expected["headlessResourceTemplates"])
 
     def test_rejects_incomplete_design_schema(self):
@@ -53,6 +53,22 @@ class HeadlessSmokeModelTests(unittest.TestCase):
         self.initialized.serverInfo.version = "0.0.0"
         with self.assertRaisesRegex(SystemExit, "expected headless version"):
             self.validate()
+
+
+class RuntimeStatusTests(unittest.TestCase):
+    def test_requires_executing_package_and_exact_inventory(self):
+        tools = types.ListToolsResult(tools=[types.Tool(name="get_runtime_status", inputSchema={"type":"object"})])
+        status = {"packageVersion":"1.3.0", "versionMatch":True, "toolNames":["get_runtime_status"]}
+        def response():
+            return types.CallToolResult(content=[types.TextContent(type="text", text=json.dumps(status))])
+        self.assertEqual(mcp_smoke.validate_runtime_status(response(), tools, "1.3.0"), status)
+        status["packageVersion"] = "1.2.2"
+        with self.assertRaisesRegex(SystemExit, "runtime package"):
+            mcp_smoke.validate_runtime_status(response(), tools, "1.3.0")
+        status["packageVersion"] = "1.3.0"
+        status["toolNames"] = []
+        with self.assertRaisesRegex(SystemExit, "runtime inventory"):
+            mcp_smoke.validate_runtime_status(response(), tools, "1.3.0")
 
 
 class PublishedDependencyTests(unittest.TestCase):
