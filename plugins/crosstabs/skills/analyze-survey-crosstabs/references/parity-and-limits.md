@@ -9,7 +9,7 @@
 - Numerical server: 40 registrations: 39 analytical tools plus runtime status, and two evidence resources.
 - Project server: exactly 33 deterministic tools, from project handoff and data import through approved dictionary edits, guarded transformations, design-aware methods, canonical widgets, reports, export, and audit history.
 - Total registrations across both servers: 73 (72 distinct names).
-- Package Registry identity: `io.github.crosstabs/crosstabs`; no 1.3.0 Registry record is claimed. Historical plugin 0.2.6/package 1.2.2 evidence is retained separately in the release-state file.
+- Package Registry identity: `io.github.crosstabs/crosstabs`; the exact 1.3.0 record was verified active with publication timestamp `2026-09-05T02:37:30.130155Z`. Historical plugin 0.2.6/package 1.2.2 evidence is retained separately in the release-state file.
 
 The 33-tool project catalog and both MCP commands are machine-readable in `../../../parity.json` and `../../../.mcp.json`. Release validation runs both exact packaged MCP commands. A local-bundle-only check does not prove package publication. Neither check proves directory submission, approval, or listing.
 

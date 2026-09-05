@@ -14,7 +14,7 @@ class SourceReleaseContractTests(unittest.TestCase):
         self.assertEqual(state["sourceRelease"]["tag"], "v0.3.0")
         self.assertEqual(state["sourceRelease"]["sourceReference"], "https://github.com/barangaroo/crosstabs-codex-plugin/tree/v0.3.0")
         self.assertTrue(state["sourceRelease"]["packagePublished"])
-        self.assertFalse(state["sourceRelease"]["registryPublished"])
+        self.assertTrue(state["sourceRelease"]["registryPublished"])
         self.assertEqual(state["previousSourceRelease"]["pluginVersion"], "0.2.6")
         self.assertEqual(state["previousSourceRelease"]["packageVersion"], "1.2.2")
         self.assertEqual(verify_plugin.EXPECTED_STATISTICS_TOOL_COUNT, 40)

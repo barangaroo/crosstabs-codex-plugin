@@ -3,11 +3,11 @@
   "sourceRelease": {
     "sourceState": "public_source_release",
     "packagePublished": true,
-    "registryPublished": false,
+    "registryPublished": true,
     "pluginVersion": "0.3.0",
     "packageVersion": "1.3.0",
     "registryName": "io.github.crosstabs/crosstabs",
-    "registryRecord": null,
+    "registryRecord": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.crosstabs%2Fcrosstabs/versions/1.3.0",
     "tag": "v0.3.0",
     "sourceReference": "https://github.com/barangaroo/crosstabs-codex-plugin/tree/v0.3.0",
     "verificationScope": "public_source_release"

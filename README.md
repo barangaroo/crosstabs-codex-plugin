@@ -18,7 +18,7 @@ The historical source release `0.2.6` pins package `1.2.2` and remains recorded 
 - Transport: local stdio only.
 - Runtime: Python 3.10 or newer and Node.js 22 or newer.
 - Project files, respondent rows, project state, calculations, and generated reports remain in the user-controlled local process and filesystem.
-- The declared Registry identity is `io.github.crosstabs/crosstabs`; no Registry record is claimed without separate evidence.
+- The declared Registry identity is `io.github.crosstabs/crosstabs`; the exact 1.3.0 record was verified active at publication timestamp `2026-09-05T02:37:30.130155Z`. Registry publication does not establish directory approval.
 - The historical public plugin `0.2.3` remains recorded separately in [`plugins/crosstabs/release-state.json`](plugins/crosstabs/release-state.json).
 
 The exact `uvx` commands are present in [`plugins/crosstabs/.mcp.json`](plugins/crosstabs/.mcp.json). Installation requires the exact package to be published and independently verified; check `sourceRelease.packagePublished` before use.

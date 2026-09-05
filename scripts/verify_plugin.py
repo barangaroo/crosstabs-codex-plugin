@@ -18,7 +18,7 @@ EXPECTED_PACKAGE_VERSION = "1.3.0"
 EXPECTED_PACKAGE_PUBLISHED = True
 EXPECTED_REGISTRY_NAME = "io.github.crosstabs/crosstabs"
 REGISTRY_RECORD_URL = "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.crosstabs%2Fcrosstabs/versions/1.3.0"
-EXPECTED_REGISTRY_RECORD: str | None = None
+EXPECTED_REGISTRY_RECORD: str | None = REGISTRY_RECORD_URL
 EXPECTED_STATISTICS_TOOL_COUNT = 40
 EXPECTED_HEADLESS_TOOLS = [
     "get_runtime_status",
