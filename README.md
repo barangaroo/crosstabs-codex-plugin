@@ -1,6 +1,6 @@
 # Crosstabs for Codex and Claude Code
 
-This repository contains source release `0.2.5`, identified by GitHub tag `v0.2.5`. It pins `crosstabs==1.2.1` for local execution. Source publication does not imply directory submission, approval, or listing.
+This repository contains source release `0.2.6`, identified by GitHub tag `v0.2.6`. It pins `crosstabs==1.2.2` for local execution. Source publication does not imply directory submission, approval, or listing.
 
 The plugin declares two on-device stdio MCP servers:
 
@@ -11,8 +11,8 @@ Together the two servers declare 68 tools. The 29-tool headless catalog is recor
 
 ## Local execution boundary
 
-- Plugin version: `0.2.5`.
-- Exact package requirement: `crosstabs==1.2.1`.
+- Plugin version: `0.2.6`.
+- Exact package requirement: `crosstabs==1.2.2`.
 - Transport: local stdio only.
 - Runtime: Python 3.10 or newer and Node.js 22 or newer.
 - Project files, respondent rows, project state, calculations, and generated reports remain in the user-controlled local process and filesystem.
@@ -26,14 +26,14 @@ The exact `uvx` commands are present in [`plugins/crosstabs/.mcp.json`](plugins/
 After the tag and exact package are public, add the GitHub-backed Codex marketplace:
 
 ```bash
-codex plugin marketplace add barangaroo/crosstabs-codex-plugin --ref v0.2.5
+codex plugin marketplace add barangaroo/crosstabs-codex-plugin --ref v0.2.6
 codex plugin add crosstabs@crosstabs
 ```
 
 For Claude Code, load the tagged source directly without a directory listing:
 
 ```bash
-git clone --branch v0.2.5 --depth 1 https://github.com/barangaroo/crosstabs-codex-plugin.git
+git clone --branch v0.2.6 --depth 1 https://github.com/barangaroo/crosstabs-codex-plugin.git
 claude --plugin-dir ./crosstabs-codex-plugin/plugins/crosstabs
 ```
 

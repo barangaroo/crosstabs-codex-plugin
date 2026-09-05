@@ -4,12 +4,12 @@
     "sourceState": "public_source_release",
     "packagePublished": true,
     "registryPublished": true,
-    "pluginVersion": "0.2.5",
-    "packageVersion": "1.2.1",
+    "pluginVersion": "0.2.6",
+    "packageVersion": "1.2.2",
     "registryName": "io.github.crosstabs/crosstabs",
-    "registryRecord": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.crosstabs%2Fcrosstabs/versions/1.2.1",
-    "tag": "v0.2.5",
-    "sourceReference": "https://github.com/barangaroo/crosstabs-codex-plugin/tree/v0.2.5",
+    "registryRecord": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.crosstabs%2Fcrosstabs/versions/1.2.2",
+    "tag": "v0.2.6",
+    "sourceReference": "https://github.com/barangaroo/crosstabs-codex-plugin/tree/v0.2.6",
     "verificationScope": "public_source_release"
   },
   "historicalPublicRelease": {

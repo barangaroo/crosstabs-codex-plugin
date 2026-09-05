@@ -13,11 +13,11 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 PLUGIN_ROOT = ROOT / "plugins" / "crosstabs"
-EXPECTED_PLUGIN_VERSION = "0.2.5"
-EXPECTED_PACKAGE_VERSION = "1.2.1"
+EXPECTED_PLUGIN_VERSION = "0.2.6"
+EXPECTED_PACKAGE_VERSION = "1.2.2"
 EXPECTED_PACKAGE_PUBLISHED = True
 EXPECTED_REGISTRY_NAME = "io.github.crosstabs/crosstabs"
-REGISTRY_RECORD_URL = "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.crosstabs%2Fcrosstabs/versions/1.2.1"
+REGISTRY_RECORD_URL = "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.crosstabs%2Fcrosstabs/versions/1.2.2"
 EXPECTED_REGISTRY_RECORD: str | None = REGISTRY_RECORD_URL
 EXPECTED_STATISTICS_TOOL_COUNT = 39
 EXPECTED_HEADLESS_TOOLS = [
@@ -72,8 +72,8 @@ EXPECTED_RELEASE_STATE = {
         "packageVersion": EXPECTED_PACKAGE_VERSION,
         "registryName": EXPECTED_REGISTRY_NAME,
         "registryRecord": EXPECTED_REGISTRY_RECORD,
-        "tag": "v0.2.5",
-        "sourceReference": "https://github.com/barangaroo/crosstabs-codex-plugin/tree/v0.2.5",
+        "tag": "v0.2.6",
+        "sourceReference": "https://github.com/barangaroo/crosstabs-codex-plugin/tree/v0.2.6",
         "verificationScope": "public_source_release",
     },
     "historicalPublicRelease": {
@@ -390,12 +390,12 @@ def verify_local() -> dict[str, Any]:
 
     readme = (ROOT / "README.md").read_text()
     for statement in (
-        "source release `0.2.5`",
-        "crosstabs==1.2.1",
+        "source release `0.2.6`",
+        "crosstabs==1.2.2",
         "exactly 29 deterministic project-workflow tools",
         "Together the two servers declare 68 tools.",
         "does not imply directory submission, approval, or listing",
-        "--ref v0.2.5",
+        "--ref v0.2.6",
     ):
         if statement not in readme:
             raise ValueError("README does not preserve the source release and directory boundary")

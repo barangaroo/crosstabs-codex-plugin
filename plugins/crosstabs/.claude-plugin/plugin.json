@@ -1,6 +1,6 @@
 {
   "name": "crosstabs",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "Use 29 deterministic project-workflow tools and 39 focused statistical tools locally from Claude Code.",
   "author": {
     "name": "Crosstabs Team",

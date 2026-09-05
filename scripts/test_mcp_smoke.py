@@ -15,7 +15,7 @@ class HeadlessSmokeModelTests(unittest.TestCase):
         self.initialized = types.InitializeResult(
             protocolVersion=types.LATEST_PROTOCOL_VERSION,
             capabilities=types.ServerCapabilities(),
-            serverInfo=types.Implementation(name="crosstabs-headless", version="1.2.1"),
+            serverInfo=types.Implementation(name="crosstabs-headless", version="1.2.2"),
         )
         self.tools = types.ListToolsResult(tools=[
             types.Tool(name=name, inputSchema={
@@ -35,7 +35,7 @@ class HeadlessSmokeModelTests(unittest.TestCase):
     def test_accepts_real_sdk_result_models(self):
         result = self.validate()
         self.assertEqual(result["headlessToolCount"], 29)
-        self.assertEqual(result["headlessServerVersion"], "1.2.1")
+        self.assertEqual(result["headlessServerVersion"], "1.2.2")
         self.assertEqual(result["headlessResourceTemplates"], self.expected["headlessResourceTemplates"])
 
     def test_rejects_incomplete_design_schema(self):
@@ -58,20 +58,20 @@ class HeadlessSmokeModelTests(unittest.TestCase):
 class PublishedDependencyTests(unittest.TestCase):
     def test_accepts_exact_package_with_explicit_compatible_mcp_major_cap(self):
         mcp_smoke.validate_package_metadata({"info": {
-            "version": "1.2.1", "requires_dist": ["mcp<2,>=1.0.0"],
-        }}, "1.2.1")
+            "version": "1.2.2", "requires_dist": ["mcp<2,>=1.0.0"],
+        }}, "1.2.2")
 
     def test_rejects_unbounded_mcp_requirement_that_broke_fresh_install(self):
         with self.assertRaisesRegex(SystemExit, "MCP 1.x"):
             mcp_smoke.validate_package_metadata({"info": {
-                "version": "1.2.1", "requires_dist": ["mcp>=1.0.0"],
-            }}, "1.2.1")
+                "version": "1.2.2", "requires_dist": ["mcp>=1.0.0"],
+            }}, "1.2.2")
 
     def test_rejects_wrong_published_package_version(self):
         with self.assertRaisesRegex(SystemExit, "package version"):
             mcp_smoke.validate_package_metadata({"info": {
                 "version": "1.2.0", "requires_dist": ["mcp<2,>=1.0.0"],
-            }}, "1.2.1")
+            }}, "1.2.2")
 
 
 if __name__ == "__main__":

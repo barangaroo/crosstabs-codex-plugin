@@ -1,13 +1,13 @@
 {
   "$schema": "./parity.schema.json",
   "schemaVersion": 4,
-  "pluginVersion": "0.2.5",
+  "pluginVersion": "0.2.6",
   "verifiedAt": "2026-09-04T15:45:06Z",
   "verificationScope": "public_source_release",
   "distribution": {
     "package": "crosstabs",
-    "version": "1.2.1",
-    "requirement": "crosstabs==1.2.1",
+    "version": "1.2.2",
+    "requirement": "crosstabs==1.2.2",
     "packagePublished": true,
     "transport": "stdio",
     "toolCount": 39,
@@ -52,7 +52,7 @@
       "crosstabs://evidence/limitations"
     ],
     "registryName": "io.github.crosstabs/crosstabs",
-    "registryRecord": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.crosstabs%2Fcrosstabs/versions/1.2.1"
+    "registryRecord": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.crosstabs%2Fcrosstabs/versions/1.2.2"
   },
   "surfaces": [
     {

@@ -15,7 +15,7 @@
   "properties": {
     "$schema": { "const": "./parity.schema.json" },
     "schemaVersion": { "const": 4 },
-    "pluginVersion": { "const": "0.2.5" },
+    "pluginVersion": { "const": "0.2.6" },
     "verifiedAt": { "type": "string", "format": "date-time" },
     "verificationScope": { "const": "public_source_release" },
     "distribution": {
@@ -37,8 +37,8 @@
       ],
       "properties": {
         "package": { "const": "crosstabs" },
-        "version": { "const": "1.2.1" },
-        "requirement": { "const": "crosstabs==1.2.1" },
+        "version": { "const": "1.2.2" },
+        "requirement": { "const": "crosstabs==1.2.2" },
         "packagePublished": { "const": true },
         "transport": { "const": "stdio" },
         "toolCount": { "const": 39 },
@@ -87,7 +87,7 @@
           ]
         },
         "registryName": { "const": "io.github.crosstabs/crosstabs" },
-        "registryRecord": { "const": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.crosstabs%2Fcrosstabs/versions/1.2.1" }
+        "registryRecord": { "const": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.crosstabs%2Fcrosstabs/versions/1.2.2" }
       },
       "additionalProperties": false
     },
